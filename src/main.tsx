@@ -1,8 +1,10 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import SimpleApp from './SimpleApp.tsx';
 import './index.css';
 import { initializeCustomFonts } from './utils/customFonts';
+
+console.log("🔥 MAIN.TSX LOADING - TIMESTAMP:", new Date().toISOString());
 
 // Initialize custom fonts
 initializeCustomFonts();
@@ -52,6 +54,6 @@ if (!navigator.onLine) {
 const rootElement = document.getElementById("root")!;
 createRoot(rootElement).render(
   <StrictMode>
-    <App />
+    <SimpleApp />
   </StrictMode>
 );
