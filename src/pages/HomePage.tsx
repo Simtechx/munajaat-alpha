@@ -112,12 +112,22 @@ const HomePage = () => {
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-lg border-[2px]" style={{ borderColor: '#555c66' }}>
             <div className="text-center">
-              <p className="text-xs md:text-sm font-medium text-gray-700 leading-tight">
-                © 2026 Munajaat Companion
-              </p>
-              <p className="text-[10px] md:text-xs text-gray-500 mt-0.5">
-                by Simtech W. All rights reserved.
-              </p>
+              {/* Mobile view - 2 lines with different sizes */}
+              <div className="flex flex-col md:hidden">
+                <p className="text-xs font-medium text-gray-700 leading-tight">
+                  © 2026 Munajaat.com
+                </p>
+                <p className="text-[10px] text-gray-500 mt-0.5">
+                  Simtech W. All rights reserved.
+                </p>
+              </div>
+              
+              {/* Tablet and Web view - 1 line with same size */}
+              <div className="hidden md:block">
+                <p className="text-sm font-medium text-gray-700 leading-tight">
+                  © 2026 Munajaat.com • Simtech W. All rights reserved.
+                </p>
+              </div>
             </div>
           </div>
         </div>
