@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { DayOfWeek } from '@/types';
 import { useDataFetcher } from '@/hooks/useDataFetcher';
 import { useAppState } from '@/hooks/useAppState';
-import { useToast } from '@/hooks/use-toast';
+// import { useToast } from '@/hooks/use-toast'; // REMOVED
 import { initializeCustomFonts } from '@/utils/customFonts';
 
 export const useIndexPageLogic = () => {
   const appStateHook = useAppState();
   const { data, loading, error } = useDataFetcher();
-  const { toast } = useToast();
+  // const { toast } = useToast(); // REMOVED
 
   // Initialize custom fonts on component mount
   useEffect(() => {
@@ -31,27 +31,14 @@ export const useIndexPageLogic = () => {
     appStateHook.setShowHizbulBahr(false);
     appStateHook.setIsPlaying(false);
     appStateHook.setCurrentAudioIndex(0);
-    toast({
-      title: `Switched to ${day}`,
-      description: `Now viewing ${day}'s spiritual journey`,
-    });
+    // toast removed - was causing React context issues
   };
 
   const handleHizbulBahrToggle = () => {
     appStateHook.setShowHizbulBahr(!appStateHook.showHizbulBahr);
     appStateHook.setIsPlaying(false);
     appStateHook.setCurrentAudioIndex(0);
-    if (!appStateHook.showHizbulBahr) {
-      toast({
-        title: "Hizbul Bahr",
-        description: "The Litany of the Sea - Special spiritual protection",
-      });
-    } else {
-      toast({
-        title: "Munājāat Companion",
-        description: "A Weekly Journey of Divine Invocations",
-      });
-    }
+    // toast calls removed - were causing React context issues
   };
 
   const handleViewModeToggle = () => {
@@ -93,38 +80,26 @@ export const useIndexPageLogic = () => {
     const newVisibility = !appStateHook.dayButtonsVisible;
     console.log('handleDayButtonsToggle called, changing from', appStateHook.dayButtonsVisible, 'to', newVisibility);
     appStateHook.setDayButtonsVisible(newVisibility);
-    toast({
-      title: newVisibility ? "Day Navigation Shown" : "Day Navigation Hidden",
-      description: newVisibility ? "Day buttons are now visible" : "Day buttons are now hidden",
-    });
+    // toast removed - was causing React context issues
   };
 
   const handleArabicFontChange = (font: string) => {
     console.log('handleArabicFontChange called with:', font);
     appStateHook.setArabicFont(font);
-    toast({
-      title: "Arabic Font Changed",
-      description: `Switched to ${font}`,
-    });
+    // toast removed - was causing React context issues
   };
 
   const handleEnglishFontChange = (font: string) => {
     console.log('handleEnglishFontChange called with:', font);
     appStateHook.setEnglishFont(font);
-    toast({
-      title: "English Font Changed", 
-      description: `Switched to ${font}`,
-    });
+    // toast removed - was causing React context issues
   };
 
   const handleAudioModeToggle = () => {
     const newMode = appStateHook.audioMode === 'block' ? 'all' : 'block';
     console.log('handleAudioModeToggle called, changing from', appStateHook.audioMode, 'to', newMode);
     appStateHook.setAudioMode(newMode);
-    toast({
-      title: `Audio Mode: ${newMode === 'all' ? 'Play All' : 'Single Block'}`,
-      description: newMode === 'all' ? 'Will play all blocks continuously' : 'Will play current block only',
-    });
+    // toast removed - was causing React context issues
   };
 
   return {
