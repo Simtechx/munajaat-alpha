@@ -23,7 +23,7 @@ const HomePage = () => {
         
         {/* Welcome Text */}
         <div className="mb-6 md:mb-10 text-center px-2">
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl border-3 max-w-2xl mx-auto" style={{ borderColor: '#555c66' }}>
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl border-2 max-w-2xl mx-auto" style={{ borderColor: '#555c66' }}>
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-1 md:mb-2">
               Welcome
             </h1>
@@ -41,7 +41,7 @@ const HomePage = () => {
             onClick={() => navigate('/munajaat')}
             className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
           >
-            <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-3 border-amber-300 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
+            <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-2 border-amber-300 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
               
               <div className="h-full flex items-center justify-between p-4 md:p-6">
                 {/* Logo Section */}
@@ -76,7 +76,7 @@ const HomePage = () => {
             onClick={() => navigate('/hizbul-bahr')}
             className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
           >
-            <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-3 border-amber-300 overflow-hidden" style={{ backgroundColor: 'rgb(51, 65, 85)' }}>
+            <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-2 border-amber-300 overflow-hidden" style={{ backgroundColor: 'rgb(51, 65, 85)' }}>
               
               <div className="h-full flex items-center justify-between p-4 md:p-6">
                 {/* Text Section */}
