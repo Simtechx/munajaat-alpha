@@ -22,14 +22,6 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     force: true,
-    include: ['react', 'react-dom', '@radix-ui/react-tooltip'],
-    exclude: ['react', 'react-dom']
-  },
-  build: {
-    rollupOptions: {
-      external: (id) => {
-        return false; // Don't externalize anything for now
-      }
-    }
+    include: ['react', 'react-dom']
   }
 }));
