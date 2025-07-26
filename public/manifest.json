@@ -1,0 +1,42 @@
+
+{
+  "name": "Munājāat - Weekly Journey of Divine Invocations",
+  "short_name": "Munājāat",
+  "description": "A comprehensive spiritual companion featuring daily invocations, Hizbul Bahr, and offline accessibility for your spiritual journey",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "categories": ["lifestyle", "productivity", "education"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/lovable-uploads/3cc78061-98bf-47ed-b312-4efe7649efb3.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/lovable-uploads/3cc78061-98bf-47ed-b312-4efe7649efb3.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/lovable-uploads/3cc78061-98bf-47ed-b312-4efe7649efb3.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "features": [
+    "offline-support",
+    "cross-platform",
+    "installable"
+  ],
+  "prefer_related_applications": false
+}

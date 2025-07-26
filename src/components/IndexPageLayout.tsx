@@ -1,0 +1,163 @@
+
+import React from 'react';
+import { AppHeader } from '@/components/AppHeader';
+import { Footer } from '@/components/Footer';
+import { BackToTopButton } from '@/components/BackToTopButton';
+import { InfoModal } from '@/components/InfoModal';
+import { PublisherModal } from '@/components/PublisherModal';
+import { OfflineIndicator } from '@/components/OfflineIndicator';
+import { AudioControlsManager } from '@/components/audio/AudioControlsManager';
+import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
+import { ContentWrapper } from '@/components/layout/ContentWrapper';
+import { Toaster } from '@/components/ui/toaster';
+import { DayOfWeek, LayoutMode } from '@/types';
+import { DayIndicatorStyle } from '@/hooks/useAppState';
+
+interface IndexPageLayoutProps {
+  appState: {
+    selectedDay: DayOfWeek;
+    selectedLayout: LayoutMode;
+    showHizbulBahr: boolean;
+    arabicVisible: boolean;
+    englishVisible: boolean;
+    audioEnabled: boolean;
+    audioMode: 'block' | 'all';
+    isPlaying: boolean;
+    completedDays: Set<DayOfWeek>;
+    viewMode: 'still' | 'slide';
+    backgroundOpacity: number;
+    selectedTheme: 'color' | 'neutral';
+    dayIndicatorStyle: DayIndicatorStyle;
+    showInfo: boolean;
+    showPublisher: boolean;
+    dayButtonsVisible: boolean;
+    arabicFont: string;
+    englishFont: string;
+    setSelectedLayout: (layout: LayoutMode) => void;
+    setArabicVisible: (visible: boolean) => void;
+    setEnglishVisible: (visible: boolean) => void;
+    setAudioEnabled: (enabled: boolean) => void;
+    setAudioMode: (mode: 'block' | 'all') => void;
+    setBackgroundOpacity: (opacity: number) => void;
+    setSelectedTheme: (theme: 'color' | 'neutral') => void;
+    setDayIndicatorStyle: (style: DayIndicatorStyle) => void;
+    setShowInfo: (show: boolean) => void;
+    setShowPublisher: (show: boolean) => void;
+    setViewMode: (mode: 'still' | 'slide') => void;
+    setDayButtonsVisible: (visible: boolean) => void;
+    currentAudioIndex: number;
+  };
+  data: any;
+  handlers: {
+    handleDayChange: (day: DayOfWeek) => void;
+    handleHizbulBahrToggle: () => void;
+    handleViewModeToggle: () => void;
+    handleAudioPlayPause: () => void;
+    handleAudioNext: () => void;
+    handleAudioReset: () => void;
+    handleDayButtonsToggle: () => void;
+    handleArabicFontChange: (font: string) => void;
+    handleEnglishFontChange: (font: string) => void;
+    handleAudioModeToggle: () => void;
+    handleBlockSelect: (index: number) => void;
+  };
+}
+
+export const IndexPageLayout: React.FC<IndexPageLayoutProps> = ({
+  appState,
+  data,
+  handlers
+}) => {
+  
+  // Debug audio state
+  React.useEffect(() => {
+    console.log('Audio controls render - audioEnabled:', appState.audioEnabled, 'isPlaying:', appState.isPlaying);
+  }, [appState.audioEnabled, appState.isPlaying]);
+
+  return (
+    <div className="min-h-screen relative">
+      <OfflineIndicator />
+      
+      <BackgroundLayers 
+        selectedDay={appState.selectedDay}
+        selectedTheme={appState.selectedTheme}
+        backgroundOpacity={appState.backgroundOpacity}
+      />
+
+      {/* Content Layer */}
+      <div className="relative z-30">
+        <AppHeader 
+          selectedDay={appState.selectedDay}
+          showHizbulBahr={appState.showHizbulBahr}
+          onShowInfo={() => appState.setShowInfo(true)}
+          onShowPublisher={() => appState.setShowPublisher(true)}
+          onHizbulBahrToggle={handlers.handleHizbulBahrToggle}
+          dayButtonsVisible={appState.dayButtonsVisible}
+          onDayButtonsToggle={handlers.handleDayButtonsToggle}
+        />
+        
+        <ContentWrapper 
+          appState={appState}
+          data={data}
+          handlers={handlers}
+        />
+
+        {/* Audio Controls - Above Footer */}
+        <AudioControlsManager
+          isVisible={appState.audioEnabled}
+          isPlaying={appState.isPlaying}
+          onPlayPause={handlers.handleAudioPlayPause}
+          onNext={handlers.handleAudioNext}
+          onReset={handlers.handleAudioReset}
+          audioMode={appState.audioMode}
+          onAudioModeToggle={handlers.handleAudioModeToggle}
+          selectedDay={appState.selectedDay}
+          currentAudioIndex={appState.currentAudioIndex}
+          totalBlocks={data && !appState.showHizbulBahr && data[appState.selectedDay] ? data[appState.selectedDay].Arabic.length : 0}
+        />
+
+        <Footer
+          selectedDay={appState.selectedDay}
+          viewMode={appState.viewMode}
+          onViewModeToggle={handlers.handleViewModeToggle}
+          selectedLayout={appState.selectedLayout}
+          onLayoutChange={appState.setSelectedLayout}
+          arabicVisible={appState.arabicVisible}
+          englishVisible={appState.englishVisible}
+          audioEnabled={appState.audioEnabled}
+          onArabicToggle={() => appState.setArabicVisible(!appState.arabicVisible)}
+          onEnglishToggle={() => appState.setEnglishVisible(!appState.englishVisible)}
+          onAudioToggle={() => appState.setAudioEnabled(!appState.audioEnabled)}
+          backgroundOpacity={appState.backgroundOpacity}
+          onBackgroundOpacityChange={appState.setBackgroundOpacity}
+          onArabicFontToggle={handlers.handleArabicFontChange}
+          onEnglishFontToggle={handlers.handleEnglishFontChange}
+          arabicFont={appState.arabicFont}
+          englishFont={appState.englishFont}
+          showHizbulBahr={appState.showHizbulBahr}
+          onHizbulBahrToggle={handlers.handleHizbulBahrToggle}
+          selectedTheme={appState.selectedTheme}
+          onThemeChange={appState.setSelectedTheme}
+          dayIndicatorStyle={appState.dayIndicatorStyle}
+          onDayIndicatorChange={appState.setDayIndicatorStyle}
+        />
+        
+        <BackToTopButton selectedDay={appState.selectedDay} />
+        
+        <InfoModal
+          isOpen={appState.showInfo}
+          onClose={() => appState.setShowInfo(false)}
+          selectedDay={appState.selectedDay}
+        />
+        
+        <PublisherModal
+          isOpen={appState.showPublisher}
+          onClose={() => appState.setShowPublisher(false)}
+          selectedDay={appState.selectedDay}
+        />
+        
+        <Toaster />
+      </div>
+    </div>
+  );
+};

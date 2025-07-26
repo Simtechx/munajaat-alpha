@@ -1,0 +1,86 @@
+
+/* Indo-Pak Nastaleeq Font - Updated path with fallback loading */
+@font-face {
+  font-family: 'IndoPak';
+  src: url('/indopak.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ensure Indo-Pak loads properly */
+@font-face {
+  font-family: 'Indo-Pak-Nastaleeq';
+  src: url('/indopak.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Google Fonts - Already imported in index.css */
+/* Font classes for Tailwind - Arabic Fonts */
+.font-scheherazade {
+  font-family: 'Scheherazade New', serif;
+}
+
+.font-amiri {
+  font-family: 'Amiri', serif;
+}
+
+.font-noto-arabic {
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+.font-indopak {
+  font-family: 'IndoPak', 'Indo-Pak-Nastaleeq', 'Scheherazade New', serif !important;
+  font-feature-settings: 'liga' 1, 'calt' 1, 'ccmp' 1, 'curs' 1, 'kern' 1, 'mark' 1, 'mkmk' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Debug class to verify font loading */
+.debug-indopak {
+  font-family: 'IndoPak', 'Indo-Pak-Nastaleeq', 'Scheherazade New', serif !important;
+  background-color: yellow !important;
+  color: red !important;
+}
+
+/* Font classes for Tailwind - English Fonts */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-georgia {
+  font-family: 'Georgia', serif;
+}
+
+.font-times {
+  font-family: 'Times New Roman', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Utility classes for dynamic font application */
+.arabic-text {
+  direction: rtl;
+  text-align: right;
+  line-height: 1.8;
+}
+
+.english-text {
+  direction: ltr;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Force Indo-Pak font loading verification */
+.font-indopak * {
+  font-family: 'IndoPak', 'Indo-Pak-Nastaleeq', 'Scheherazade New', serif !important;
+}
