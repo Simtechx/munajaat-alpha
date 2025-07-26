@@ -8,13 +8,15 @@ import {
   ToastTitle,
   ToastViewport,
 } from "@/components/ui/toast"
-import { useAppState } from "@/hooks/useAppState"
-import { DAY_THEMES } from "@/types"
+// Temporarily removed useAppState to fix React context issues
+// import { useAppState } from "@/hooks/useAppState"
+// import { DAY_THEMES } from "@/types"
 
 export function Toaster() {
   const { toasts } = useToast()
-  const { selectedDay } = useAppState()
-  const themeColor = DAY_THEMES[selectedDay].color
+  // const { selectedDay } = useAppState()
+  // const themeColor = DAY_THEMES[selectedDay].color
+  const themeColor = "hsl(var(--primary))" // fallback
 
   return (
     <ToastProvider>
