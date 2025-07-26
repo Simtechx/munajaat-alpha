@@ -25,7 +25,6 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     include: ['react', 'react-dom'],
-    force: true,
-    exclude: ['src/pages/HizbulBahrPage.tsx']
+    force: true
   },
 }));
