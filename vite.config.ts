@@ -3,15 +3,12 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// Nuclear cache clear - completely new timestamp: 1753535408228
-
+// COMPLETE CACHE CLEAR - Force new bundle version
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    hmr: {
-      port: 8080,
-    },
+    hmr: false,
     force: true
   },
   plugins: [
@@ -27,14 +24,21 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: ['react', 'react-dom'],
     force: true,
-    entries: []
+    entries: [],
+    esbuildOptions: {
+      target: 'esnext'
+    }
   },
   build: {
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        entryFileNames: `[name]-[hash]-${Date.now()}.js`,
+        chunkFileNames: `[name]-[hash]-${Date.now()}.js`,
+        assetFileNames: `[name]-[hash]-${Date.now()}.[ext]`
       }
     }
   },
-  clearScreen: true
+  define: {
+    __CACHE_TIMESTAMP__: Date.now()
+  }
 }));
