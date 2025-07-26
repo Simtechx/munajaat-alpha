@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
+// Clean, optimized Vite configuration
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -11,8 +11,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -21,18 +20,10 @@ export default defineConfig(({ mode }) => ({
     dedupe: ['react', 'react-dom']
   },
   optimizeDeps: {
-    force: true,
     include: ['react', 'react-dom'],
-    exclude: []
+    force: false
   },
-  build: {
-    rollupOptions: {
-      external: [],
-    }
-  },
-  clearScreen: false,
-  define: {
-    // Force cache invalidation
-    __CACHE_BUST__: JSON.stringify(Date.now())
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
   }
 }));

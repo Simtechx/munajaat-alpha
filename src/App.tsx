@@ -1,5 +1,3 @@
-
-// Restored full functionality with React version fixes
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "@/components/ui/toaster";
@@ -11,8 +9,6 @@ import HomePage from "./pages/HomePage";
 import Index from "./pages/Index";
 import HizbulBahrPage from "./pages/HizbulBahrPage";
 import NotFound from "./pages/NotFound";
-
-console.log('App.tsx loading - React version:', React.version);
 
 // Create QueryClient instance
 const queryClient = new QueryClient({
@@ -45,8 +41,6 @@ const ErrorFallback = ({ error }: { error: Error }) => (
 );
 
 const App = () => {
-  console.log('App component rendering successfully');
-  
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <QueryClientProvider client={queryClient}>
@@ -60,7 +54,8 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-          {/* Temporarily removed Toasters to fix React context issues */}
+          <Toaster />
+          <Sonner />
         </BrowserRouter>
       </QueryClientProvider>
     </ErrorBoundary>
