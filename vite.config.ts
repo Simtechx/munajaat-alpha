@@ -30,5 +30,9 @@ export default defineConfig(({ mode }) => ({
       external: [],
     }
   },
-  clearScreen: false
+  clearScreen: false,
+  define: {
+    // Force cache invalidation
+    __CACHE_BUST__: JSON.stringify(Date.now())
+  }
 }));

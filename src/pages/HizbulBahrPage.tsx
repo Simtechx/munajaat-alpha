@@ -1,4 +1,5 @@
 import React from 'react';
+// Force cache refresh - timestamp: 1753535085841
 
 const HizbulBahrPage = () => {
   // Temporary simplified version to avoid React hook issues
