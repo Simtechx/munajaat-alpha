@@ -1,14 +1,16 @@
-import React from 'react';
+// Simple HomePage with zero React hooks or dependencies
+function HomePage() {
+  const goToMunajaat = () => {
+    window.location.href = '/munajaat';
+  };
 
-const HomePage = () => {
-  // Use direct navigation instead of useNavigate hook to avoid React context issues
-  const handleNavigation = (path: string) => {
-    window.location.href = path;
+  const goToHizbulBahr = () => {
+    window.location.href = '/hizbul-bahr';
   };
 
   return (
     <div className="h-screen w-screen overflow-hidden relative">
-      {/* New Islamic Geometric Pattern Background */}
+      {/* Islamic Geometric Pattern Background */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -16,7 +18,7 @@ const HomePage = () => {
         }}
       />
       
-      {/* Subtle overlay for better text readability */}
+      {/* Overlay for better text readability */}
       <div className="absolute inset-0 z-10 bg-white/50" />
       
       {/* Content Layer */}
@@ -39,7 +41,7 @@ const HomePage = () => {
           
           {/* Munajaat-e-Maqbool Option */}
           <div 
-            onClick={() => handleNavigation('/munajaat')}
+            onClick={goToMunajaat}
             className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
           >
             <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-[3px] border-amber-300 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
@@ -74,7 +76,7 @@ const HomePage = () => {
           
           {/* Hizbul Bahr Option */}
           <div 
-            onClick={() => handleNavigation('/hizbul-bahr')}
+            onClick={goToHizbulBahr}
             className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
           >
             <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-[3px] border-amber-300 overflow-hidden" style={{ backgroundColor: 'rgb(51, 65, 85)' }}>
@@ -113,7 +115,6 @@ const HomePage = () => {
         <div className="absolute bottom-4 md:bottom-8 lg:bottom-4 left-1/2 transform -translate-x-1/2 z-30">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-lg border-[2px]" style={{ borderColor: '#555c66' }}>
             <div className="text-center">
-              {/* Mobile view - 2 lines with different sizes */}
               <div className="flex flex-col md:hidden">
                 <p className="text-xs font-medium text-gray-700 leading-tight">
                   © 2026 Munajaat.com
@@ -123,7 +124,6 @@ const HomePage = () => {
                 </p>
               </div>
               
-              {/* Tablet and Web view - 1 line with same size */}
               <div className="hidden md:block">
                 <p className="text-sm font-medium text-gray-700 leading-tight">
                   © 2026 Munajaat.com • Simtech W. All rights reserved.
@@ -135,6 +135,6 @@ const HomePage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default HomePage;
