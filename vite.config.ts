@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// Force complete cache invalidation - timestamp: 1753535296957
+// Nuclear cache clear - completely new timestamp: 1753535408228
 
 export default defineConfig(({ mode }) => ({
   server: {
@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       port: 8080,
     },
+    force: true
   },
   plugins: [
     react(),
@@ -25,6 +26,15 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     include: ['react', 'react-dom'],
-    force: true
+    force: true,
+    entries: []
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
+  clearScreen: true
 }));

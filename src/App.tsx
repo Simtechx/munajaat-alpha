@@ -50,7 +50,7 @@ const App = () => {
               <Route path="/test" element={<TestComponent />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/munajaat" element={<Index />} />
-              <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
+              {/* <Route path="/hizbul-bahr" element={<HizbulBahrPage />} /> */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
