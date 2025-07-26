@@ -1,7 +1,7 @@
-// ULTRA-SIMPLE APP - NO DEPENDENCIES WHATSOEVER
+// CACHE BREAK v3 - ULTRA-SIMPLE APP
 import React from "react";
 
-console.log("🎯 ULTRA-SIMPLE APP LOADING - TIMESTAMP:", new Date().toISOString());
+console.log("🔥 CACHE BREAK v3 - ULTRA-SIMPLE APP LOADING");
 
 function SimpleApp() {
   console.log("🎯 SimpleApp rendering - no hooks, no context, no router");
