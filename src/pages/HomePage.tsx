@@ -16,7 +16,7 @@ const HomePage = () => {
       />
       
       {/* Subtle overlay for better text readability */}
-      <div className="absolute inset-0 z-10 bg-white/40" />
+      <div className="absolute inset-0 z-10 bg-white/30" />
       
       {/* Content Layer */}
       <div className="relative z-30 h-full flex flex-col items-center justify-center p-4 md:p-8">
@@ -81,9 +81,9 @@ const HomePage = () => {
               <div className="h-full flex items-center justify-between p-4 md:p-6">
                 {/* Text Section */}
                 <div className="flex-1 mr-3 md:mr-4">
-                  <div className="bg-slate-700/90 text-white rounded-xl p-3 md:p-4 shadow-md">
+                  <div className="bg-slate-800/95 text-white rounded-xl p-3 md:p-4 shadow-md">
                     <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-1 md:mb-2 text-center leading-tight">
-                      HIZBUL BAHAR
+                      HIZBUL BAHR
                     </h2>
                     <div className="w-full h-px bg-amber-300 my-1 md:my-2" />
                     <p className="text-xs md:text-sm text-center text-slate-200 leading-tight">
