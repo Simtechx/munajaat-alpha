@@ -34,7 +34,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/test" element={<TestComponent />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<div>Loading home...</div>} />
             <Route path="/munajaat" element={<Index />} />
             {/* <Route path="/hizbul-bahr" element={<HizbulBahrPage />} /> */}
             <Route path="*" element={<NotFound />} />
