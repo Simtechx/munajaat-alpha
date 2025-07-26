@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  // Use direct navigation instead of useNavigate hook to avoid React context issues
+  const handleNavigation = (path: string) => {
+    window.location.href = path;
+  };
 
   return (
     <div className="h-screen w-screen overflow-hidden relative">
@@ -38,7 +39,7 @@ const HomePage = () => {
           
           {/* Munajaat-e-Maqbool Option */}
           <div 
-            onClick={() => navigate('/munajaat')}
+            onClick={() => handleNavigation('/munajaat')}
             className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
           >
             <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-[3px] border-amber-300 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
@@ -73,7 +74,7 @@ const HomePage = () => {
           
           {/* Hizbul Bahr Option */}
           <div 
-            onClick={() => navigate('/hizbul-bahr')}
+            onClick={() => handleNavigation('/hizbul-bahr')}
             className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
           >
             <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-[3px] border-amber-300 overflow-hidden" style={{ backgroundColor: 'rgb(51, 65, 85)' }}>
