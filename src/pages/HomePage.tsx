@@ -16,18 +16,18 @@ const HomePage = () => {
       />
       
       {/* Subtle overlay for better text readability */}
-      <div className="absolute inset-0 z-10 bg-white/40" />
+      <div className="absolute inset-0 z-10 bg-white/20" />
       
       {/* Content Layer */}
       <div className="relative z-30 h-full flex flex-col items-center justify-center p-4 md:p-8">
         
         {/* Welcome Text */}
-        <div className="mb-6 md:mb-10 text-center px-2">
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl border border-slate-300/50 max-w-2xl mx-auto">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-1 md:mb-2">
+        <div className="mb-8 md:mb-12 text-center">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-2xl border-2 border-amber-300/60">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-2">
               Welcome
             </h1>
-            <p className="text-base md:text-lg lg:text-xl text-gray-600 font-medium">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 font-medium">
               Choose your spiritual journey
             </p>
           </div>
@@ -39,30 +39,32 @@ const HomePage = () => {
           {/* Munajaat-e-Maqbool Option */}
           <div 
             onClick={() => navigate('/munajaat')}
-            className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
+            className="group cursor-pointer transition-all duration-300 hover:scale-105 w-full max-w-md lg:max-w-lg h-48 md:h-56 lg:h-64"
           >
-            <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-2 border-amber-600/50 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
+            <div className="relative h-full rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-amber-600/70 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
+              {/* Elegant Border Accent */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-amber-700/60" />
               
-              <div className="h-full flex items-center justify-between p-4 md:p-6">
+              <div className="h-full flex items-center justify-between p-6 md:p-8">
                 {/* Logo Section */}
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center bg-white/95 rounded-xl shadow-md">
+                  <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center bg-white/90 rounded-2xl shadow-lg">
                     <img 
                       src="/lovable-uploads/118cbec6-a67a-4dc1-8f3a-abd890caaec2.png" 
                       alt="Munajaat-e-Maqbool Logo"
-                      className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain"
+                      className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
                     />
                   </div>
                 </div>
                 
                 {/* Text Section */}
-                <div className="flex-1 ml-3 md:ml-4">
-                  <div className="rounded-xl p-3 md:p-4 shadow-md" style={{ backgroundColor: '#d2cabf', color: '#4a3d2a' }}>
-                    <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-1 md:mb-2 text-center leading-tight">
+                <div className="flex-1 ml-4 md:ml-6">
+                  <div className="rounded-2xl p-4 md:p-6 shadow-lg" style={{ backgroundColor: '#d2cabf', color: '#4a3d2a' }}>
+                    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center">
                       MUNAJAAT E MAQBOOL
                     </h2>
-                    <div className="w-full h-px my-1 md:my-2" style={{ backgroundColor: '#735b40' }} />
-                    <p className="text-xs md:text-sm text-center opacity-90 leading-tight">
+                    <div className="w-full h-px my-2" style={{ backgroundColor: '#735b40' }} />
+                    <p className="text-sm md:text-base text-center opacity-90">
                       Hazrat Maulana Ashraf Ali Thanvi (R.A)
                     </p>
                   </div>
@@ -74,19 +76,21 @@ const HomePage = () => {
           {/* Hizbul Bahr Option */}
           <div 
             onClick={() => navigate('/hizbul-bahr')}
-            className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] w-full max-w-md lg:max-w-lg h-40 md:h-48 lg:h-56"
+            className="group cursor-pointer transition-all duration-300 hover:scale-105 w-full max-w-md lg:max-w-lg h-48 md:h-56 lg:h-64"
           >
-            <div className="relative h-full rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-2 border-amber-400/50 overflow-hidden" style={{ backgroundColor: 'rgb(51, 65, 85)' }}>
+            <div className="relative h-full bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-amber-400/60 overflow-hidden">
+              {/* Gold Border Accent */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-amber-300/80" />
               
-              <div className="h-full flex items-center justify-between p-4 md:p-6">
+              <div className="h-full flex items-center justify-between p-6 md:p-8">
                 {/* Text Section */}
-                <div className="flex-1 mr-3 md:mr-4">
-                  <div className="bg-slate-700/90 text-white rounded-xl p-3 md:p-4 shadow-md">
-                    <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-1 md:mb-2 text-center leading-tight">
+                <div className="flex-1 mr-4 md:mr-6">
+                  <div className="bg-slate-700/90 text-white rounded-2xl p-4 md:p-6 shadow-lg">
+                    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center">
                       HIZBUL BAHAR
                     </h2>
-                    <div className="w-full h-px bg-amber-300 my-1 md:my-2" />
-                    <p className="text-xs md:text-sm text-center text-slate-200 leading-tight">
+                    <div className="w-full h-px bg-amber-300 my-2" />
+                    <p className="text-sm md:text-base text-center text-slate-200">
                       Shaykh Abul Hasan ash-Shadhili
                     </p>
                   </div>
@@ -94,11 +98,11 @@ const HomePage = () => {
                 
                 {/* Logo Section */}
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex items-center justify-center bg-white/95 rounded-xl shadow-md">
+                  <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center bg-white/90 rounded-2xl shadow-lg">
                     <img 
                       src="/lovable-uploads/53eaf063-25d7-445e-80b0-ef9d97981a33.png" 
                       alt="Hizbul Bahr Logo"
-                      className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain"
+                      className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
                     />
                   </div>
                 </div>
