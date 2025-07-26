@@ -7,7 +7,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TestComponent from "./TestComponent";
+import HomePage from "./pages/HomePage";
 import Index from "./pages/Index";
+import HizbulBahrPage from "./pages/HizbulBahrPage";
 import NotFound from "./pages/NotFound";
 
 console.log('App.tsx loading - React version:', React.version);
@@ -52,7 +54,9 @@ const App = () => {
           <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
             <Routes>
               <Route path="/test" element={<TestComponent />} />
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/munajaat" element={<Index />} />
+              <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
