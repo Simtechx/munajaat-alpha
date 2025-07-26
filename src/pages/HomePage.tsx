@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Simple HomePage with zero React hooks or dependencies
 function HomePage() {
   const goToMunajaat = () => {
