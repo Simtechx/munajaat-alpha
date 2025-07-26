@@ -41,9 +41,9 @@ const HomePage = () => {
             onClick={() => navigate('/munajaat')}
             className="group cursor-pointer transition-all duration-300 hover:scale-105 w-full max-w-md lg:max-w-lg h-48 md:h-56 lg:h-64"
           >
-            <div className="relative h-full rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-amber-400/60 overflow-hidden" style={{ backgroundColor: '#d2cabf' }}>
-              {/* Gold Border Accent */}
-              <div className="absolute inset-0 rounded-3xl border-2 border-amber-300/80" />
+            <div className="relative h-full rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-amber-600/70 overflow-hidden" style={{ backgroundColor: '#735b40' }}>
+              {/* Elegant Border Accent */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-amber-700/60" />
               
               <div className="h-full flex items-center justify-between p-6 md:p-8">
                 {/* Logo Section */}
@@ -59,12 +59,12 @@ const HomePage = () => {
                 
                 {/* Text Section */}
                 <div className="flex-1 ml-4 md:ml-6">
-                  <div className="rounded-2xl p-4 md:p-6 shadow-lg text-white" style={{ backgroundColor: '#735b40' }}>
+                  <div className="rounded-2xl p-4 md:p-6 shadow-lg" style={{ backgroundColor: '#d2cabf', color: '#4a3d2a' }}>
                     <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center">
                       MUNAJAAT E MAQBOOL
                     </h2>
-                    <div className="w-full h-px bg-white my-2" />
-                    <p className="text-sm md:text-base text-center text-white/90">
+                    <div className="w-full h-px my-2" style={{ backgroundColor: '#735b40' }} />
+                    <p className="text-sm md:text-base text-center opacity-90">
                       Hazrat Maulana Ashraf Ali Thanvi (R.A)
                     </p>
                   </div>
