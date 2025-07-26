@@ -2,7 +2,8 @@
 import React from "react";
 
 const App = () => {
-  console.log("Fresh App loaded - no contexts, router, or TailwindCSS");
+  console.log("🚀 COMPLETELY NEW APP VERSION - TIMESTAMP:", Date.now());
+  console.log("🚀 This should show the latest code without any router hooks");
   
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
