@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
+// Force complete cache invalidation - timestamp: 1753535215327
+
 // Clean, optimized Vite configuration
 export default defineConfig(({ mode }) => ({
   server: {

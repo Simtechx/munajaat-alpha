@@ -1,10 +1,7 @@
 import React from 'react';
 
-const HizbulBahrPage: React.FC = () => {
-  const handleBackToHome = () => {
-    window.location.href = '/';
-  };
-
+// Clean HizbulBahr component - no hooks, no complex logic
+export default function HizbulBahrPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="text-center max-w-md">
@@ -13,7 +10,7 @@ const HizbulBahrPage: React.FC = () => {
           This page is temporarily simplified while we fix React context issues.
         </p>
         <button 
-          onClick={handleBackToHome}
+          onClick={() => window.location.href = '/'}
           className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
         >
           Back to Home
@@ -21,6 +18,4 @@ const HizbulBahrPage: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default HizbulBahrPage;
+}
