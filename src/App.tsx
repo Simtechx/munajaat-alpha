@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TestComponent from "./TestComponent";
 import HomePage from "./pages/HomePage";
 import Index from "./pages/Index";
-import HizbulBahrPage from "./pages/HizbulBahrPage";
+import HizbulBahrPage from "./pages/HizbulBahrPageNew";
 import NotFound from "./pages/NotFound";
 
 // Create QueryClient instance
