@@ -1,11 +1,10 @@
-import React from 'react';
-// Force cache refresh - timestamp: 1753535085841
+// Completely rewritten to avoid cache issues
+import * as React from 'react';
 
-const HizbulBahrPage = () => {
-  // Temporary simplified version to avoid React hook issues
-  const handleBackToHome = () => {
+function HizbulBahrPage() {
+  const goHome = React.useCallback(() => {
     window.location.href = '/';
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -15,7 +14,7 @@ const HizbulBahrPage = () => {
           This page is temporarily simplified while we fix React context issues.
         </p>
         <button 
-          onClick={handleBackToHome}
+          onClick={goHome}
           className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
         >
           Back to Home
@@ -23,6 +22,6 @@ const HizbulBahrPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default HizbulBahrPage;
