@@ -1,5 +1,5 @@
 
-// Force cache bust - React import fix 2025-01-24-002
+// Force cache bust - React deduplication fix 2025-01-26-001
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
