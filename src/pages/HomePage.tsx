@@ -16,7 +16,7 @@ const HomePage = () => {
       />
       
       {/* Subtle overlay for better text readability */}
-      <div className="absolute inset-0 z-10 bg-white/20" />
+      <div className="absolute inset-0 z-10 bg-white/50" />
       
       {/* Content Layer */}
       <div className="relative z-30 h-full flex flex-col items-center justify-center p-4 md:p-8">
