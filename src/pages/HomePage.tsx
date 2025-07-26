@@ -109,7 +109,7 @@ const HomePage = () => {
         </div>
         
         {/* Copyright Badge */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="absolute bottom-4 md:bottom-8 lg:bottom-4 left-1/2 transform -translate-x-1/2 z-30">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2 shadow-lg border-[2px]" style={{ borderColor: '#555c66' }}>
             <div className="text-center">
               {/* Mobile view - 2 lines with different sizes */}
