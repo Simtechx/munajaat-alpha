@@ -7,7 +7,9 @@ console.log("🚀 ULTIMATE CACHE BYPASS v5 - TIMESTAMP:", new Date().toISOString
 
 // Main app component with proper functionality
 function UltimateApp() {
-  console.log("🎯 Loading main app functionality");
+  console.log("🎯 UltimateApp rendering - checking everything");
+  console.log("🎯 React.createElement available:", typeof React.createElement);
+  console.log("🎯 Window dimensions:", window.innerWidth, "x", window.innerHeight);
   
   return React.createElement("div", {
     style: { backgroundColor: 'white', minHeight: '100vh' }
@@ -17,6 +19,7 @@ function UltimateApp() {
       width: '100vw', 
       overflow: 'hidden', 
       position: 'relative',
+      backgroundColor: '#f3f4f6',
       backgroundImage: `url('/lovable-uploads/ac6957f1-9d22-45c7-b0fe-cc8a1ae31c81.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
