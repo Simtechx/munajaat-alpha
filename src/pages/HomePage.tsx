@@ -41,7 +41,7 @@ const HomePage = () => {
             onClick={() => navigate('/munajaat')}
             className="group cursor-pointer transition-all duration-300 hover:scale-105 w-full max-w-md lg:max-w-lg h-48 md:h-56 lg:h-64"
           >
-            <div className="relative h-full bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-amber-400/60 overflow-hidden">
+            <div className="relative h-full rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-amber-400/60 overflow-hidden" style={{ backgroundColor: '#d2cabf' }}>
               {/* Gold Border Accent */}
               <div className="absolute inset-0 rounded-3xl border-2 border-amber-300/80" />
               
@@ -59,7 +59,7 @@ const HomePage = () => {
                 
                 {/* Text Section */}
                 <div className="flex-1 ml-4 md:ml-6">
-                  <div className="rounded-2xl p-4 md:p-6 shadow-lg text-white" style={{ backgroundColor: '#d2cabf' }}>
+                  <div className="rounded-2xl p-4 md:p-6 shadow-lg text-white" style={{ backgroundColor: '#735b40' }}>
                     <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center">
                       MUNAJAAT E MAQBOOL
                     </h2>
