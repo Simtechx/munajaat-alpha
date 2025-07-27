@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import FreshStart from './FreshStart.tsx';
+import MainApp from './MainApp.tsx';
 import './index.css';
 import { initializeCustomFonts } from './utils/customFonts';
 
@@ -54,6 +54,6 @@ if (!navigator.onLine) {
 const rootElement = document.getElementById("root")!;
 createRoot(rootElement).render(
   <StrictMode>
-    <FreshStart />
+    <MainApp />
   </StrictMode>
 );
