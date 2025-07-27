@@ -108,7 +108,7 @@ function UltimateApp() {
         // Munajaat option
         React.createElement("div", {
           key: "munajaat",
-          onClick: () => window.location.href = '/munajaat',
+          onClick: () => window.location.href = '/',
           style: {
             cursor: 'pointer',
             transition: 'transform 0.2s',
@@ -206,7 +206,7 @@ function UltimateApp() {
         // Hizbul Bahr option
         React.createElement("div", {
           key: "hizbul",
-          onClick: () => window.location.href = '/hizbul-bahr',
+          onClick: () => window.location.href = '/hizbul-bahr-page-new',
           style: {
             cursor: 'pointer',
             transition: 'transform 0.2s',
@@ -302,14 +302,12 @@ function UltimateApp() {
         ])))
       ]),
       
-      // Copyright
+      // Copyright with proper spacing
       React.createElement("div", {
         key: "copyright",
         style: {
-          position: 'absolute',
-          bottom: '16px',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          marginTop: '64px',
+          textAlign: 'center',
           zIndex: 30
         }
       }, React.createElement("div", {
