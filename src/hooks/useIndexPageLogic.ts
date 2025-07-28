@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { DayOfWeek } from '@/types';
 import { useDataFetcher } from '@/hooks/useDataFetcher';
 import { useAppState } from '@/hooks/useAppState';
