@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { getCurrentDay } from '@/utils/dateUtils';
 import { isValidArabicFont, isValidEnglishFont } from '@/utils/fontUtils';
@@ -12,9 +12,17 @@ export type DayIndicatorStyle =
 
 export const useAppState = () => {
   console.log('🔍 useAppState: Starting hook execution');
+  console.log('🔍 useAppState: React available?', !!React);
   console.log('🔍 useAppState: useState function available?', typeof useState);
   
-  const [selectedDay, setSelectedDay] = useState<DayOfWeek>('Sunday'); // Simplified initialization
+  const [selectedDay, setSelectedDay] = useState<DayOfWeek>(() => {
+    try {
+      return getCurrentDay();
+    } catch (error) {
+      console.warn('Error getting current day, defaulting to Sunday:', error);
+      return 'Sunday';
+    }
+  });
   const [selectedLayout, setSelectedLayout] = useState<LayoutMode>('Classic');
   const [completedDays, setCompletedDays] = useState<Set<DayOfWeek>>(new Set());
   const [showHizbulBahr, setShowHizbulBahr] = useState(false);

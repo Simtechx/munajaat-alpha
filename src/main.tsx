@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import MainApp from './MainApp.tsx';
+import App from './App';
 import './index.css';
 import { initializeCustomFonts } from './utils/customFonts';
 
@@ -53,9 +53,13 @@ if (!navigator.onLine) {
 }
 
 // Render the app
-const rootElement = document.getElementById("root")!;
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
+
 createRoot(rootElement).render(
   <StrictMode>
-    <MainApp />
+    <App />
   </StrictMode>
 );

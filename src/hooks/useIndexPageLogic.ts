@@ -1,12 +1,14 @@
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { DayOfWeek } from '@/types';
 import { useDataFetcher } from '@/hooks/useDataFetcher';
 import { useAppState } from '@/hooks/useAppState';
-// import { useToast } from '@/hooks/use-toast'; // REMOVED
 import { initializeCustomFonts } from '@/utils/customFonts';
 
 export const useIndexPageLogic = () => {
+  console.log('🔍 useIndexPageLogic: Starting hook execution');
+  console.log('🔍 useIndexPageLogic: React available?', !!React);
+  
   const appStateHook = useAppState();
   const { data, loading, error } = useDataFetcher();
   // const { toast } = useToast(); // REMOVED
