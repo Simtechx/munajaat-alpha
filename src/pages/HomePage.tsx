@@ -1,8 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
-  const navigate = useNavigate();
+  // Remove useNavigate - causing Router context issues
+  const handleMunajaatClick = () => {
+    window.location.href = '/munajaat';
+  };
+
+  const handleHizbulBahrClick = () => {
+    window.location.href = '/hizbul-bahr';
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -35,7 +41,7 @@ const HomePage: React.FC = () => {
             
             {/* Munajaat Option */}
             <div 
-              onClick={() => navigate('/munajaat')}
+              onClick={handleMunajaatClick}
               className="cursor-pointer transition-transform hover:scale-105 w-full max-w-md h-48"
             >
               <div className="relative h-full rounded-2xl shadow-lg border-3 border-yellow-400 overflow-hidden bg-amber-800">
@@ -70,7 +76,7 @@ const HomePage: React.FC = () => {
             
             {/* Hizbul Bahr Option */}
             <div 
-              onClick={() => navigate('/hizbul-bahr')}
+              onClick={handleHizbulBahrClick}
               className="cursor-pointer transition-transform hover:scale-105 w-full max-w-md h-48"
             >
               <div className="relative h-full rounded-2xl shadow-lg border-3 border-yellow-400 overflow-hidden bg-slate-700">
