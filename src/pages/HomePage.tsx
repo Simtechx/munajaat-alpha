@@ -1,9 +1,11 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
-  console.log("HomePage loaded - NO hooks issue should occur here");
-  const navigate = useNavigate();
+  console.log("✅ HomePage loaded - using window.location for navigation");
+  
+  const handleNavigation = (path: string) => {
+    window.location.href = path;
+  };
   
   return (
     <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
@@ -86,7 +88,7 @@ const HomePage: React.FC = () => {
             
             {/* Munajaat Option */}
             <div 
-              onClick={() => navigate('/munajaat')}
+              onClick={() => handleNavigation('/munajaat')}
               style={{
                 cursor: 'pointer',
                 transition: 'transform 0.2s',
@@ -177,7 +179,7 @@ const HomePage: React.FC = () => {
             
             {/* Hizbul Bahr Option */}
             <div 
-              onClick={() => navigate('/hizbul-bahr')}
+              onClick={() => handleNavigation('/hizbul-bahr')}
               style={{
                 cursor: 'pointer',
                 transition: 'transform 0.2s',
