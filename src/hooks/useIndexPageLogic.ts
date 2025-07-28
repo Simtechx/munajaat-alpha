@@ -1,17 +1,13 @@
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { DayOfWeek } from '@/types';
 import { useDataFetcher } from '@/hooks/useDataFetcher';
 import { useAppState } from '@/hooks/useAppState';
 import { initializeCustomFonts } from '@/utils/customFonts';
 
 export const useIndexPageLogic = () => {
-  console.log('🔍 useIndexPageLogic: Starting hook execution');
-  console.log('🔍 useIndexPageLogic: React available?', !!React);
-  
   const appStateHook = useAppState();
   const { data, loading, error } = useDataFetcher();
-  // const { toast } = useToast(); // REMOVED
 
   // Initialize custom fonts on component mount
   useEffect(() => {
@@ -33,14 +29,12 @@ export const useIndexPageLogic = () => {
     appStateHook.setShowHizbulBahr(false);
     appStateHook.setIsPlaying(false);
     appStateHook.setCurrentAudioIndex(0);
-    // toast removed - was causing React context issues
   };
 
   const handleHizbulBahrToggle = () => {
     appStateHook.setShowHizbulBahr(!appStateHook.showHizbulBahr);
     appStateHook.setIsPlaying(false);
     appStateHook.setCurrentAudioIndex(0);
-    // toast calls removed - were causing React context issues
   };
 
   const handleViewModeToggle = () => {
@@ -82,26 +76,22 @@ export const useIndexPageLogic = () => {
     const newVisibility = !appStateHook.dayButtonsVisible;
     console.log('handleDayButtonsToggle called, changing from', appStateHook.dayButtonsVisible, 'to', newVisibility);
     appStateHook.setDayButtonsVisible(newVisibility);
-    // toast removed - was causing React context issues
   };
 
   const handleArabicFontChange = (font: string) => {
     console.log('handleArabicFontChange called with:', font);
     appStateHook.setArabicFont(font);
-    // toast removed - was causing React context issues
   };
 
   const handleEnglishFontChange = (font: string) => {
     console.log('handleEnglishFontChange called with:', font);
     appStateHook.setEnglishFont(font);
-    // toast removed - was causing React context issues
   };
 
   const handleAudioModeToggle = () => {
     const newMode = appStateHook.audioMode === 'block' ? 'all' : 'block';
     console.log('handleAudioModeToggle called, changing from', appStateHook.audioMode, 'to', newMode);
     appStateHook.setAudioMode(newMode);
-    // toast removed - was causing React context issues
   };
 
   return {

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { getCurrentDay } from '@/utils/dateUtils';
 import { isValidArabicFont, isValidEnglishFont } from '@/utils/fontUtils';
@@ -11,10 +11,6 @@ export type DayIndicatorStyle =
   | 'inverted';
 
 export const useAppState = () => {
-  console.log('🔍 useAppState: Starting hook execution');
-  console.log('🔍 useAppState: React available?', !!React);
-  console.log('🔍 useAppState: useState function available?', typeof useState);
-  
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>(() => {
     try {
       return getCurrentDay();
