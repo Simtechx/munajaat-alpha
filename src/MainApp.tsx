@@ -8,6 +8,7 @@ const MainApp = () => {
   console.log("🚀 MainApp with proper routing initialized");
   console.log("📍 React version check:", React.version);
   console.log("📍 Router available:", typeof Router);
+  console.log("📍 React available in MainApp:", !!React);
   
   return (
     <Router>

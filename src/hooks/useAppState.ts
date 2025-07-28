@@ -11,7 +11,10 @@ export type DayIndicatorStyle =
   | 'inverted';
 
 export const useAppState = () => {
-  const [selectedDay, setSelectedDay] = useState<DayOfWeek>(getCurrentDay());
+  console.log('🔍 useAppState: Starting hook execution');
+  console.log('🔍 useAppState: useState function available?', typeof useState);
+  
+  const [selectedDay, setSelectedDay] = useState<DayOfWeek>('Sunday'); // Simplified initialization
   const [selectedLayout, setSelectedLayout] = useState<LayoutMode>('Classic');
   const [completedDays, setCompletedDays] = useState<Set<DayOfWeek>>(new Set());
   const [showHizbulBahr, setShowHizbulBahr] = useState(false);

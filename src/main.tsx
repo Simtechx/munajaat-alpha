@@ -5,6 +5,8 @@ import './index.css';
 import { initializeCustomFonts } from './utils/customFonts';
 
 console.log("🔥 MAIN.TSX LOADING - TIMESTAMP:", new Date().toISOString());
+console.log("🔍 MAIN.TSX: React available?", !!React);
+console.log("🔍 MAIN.TSX: React.version:", React.version);
 
 // Initialize custom fonts
 initializeCustomFonts();
