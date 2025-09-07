@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { getCurrentDay } from '@/utils/dateUtils';
 import { isValidArabicFont, isValidEnglishFont } from '@/utils/fontUtils';
@@ -11,14 +11,7 @@ export type DayIndicatorStyle =
   | 'inverted';
 
 export const useAppState = () => {
-  const [selectedDay, setSelectedDay] = useState<DayOfWeek>(() => {
-    try {
-      return getCurrentDay();
-    } catch (error) {
-      console.warn('Error getting current day, defaulting to Sunday:', error);
-      return 'Sunday';
-    }
-  });
+  const [selectedDay, setSelectedDay] = useState<DayOfWeek>(getCurrentDay());
   const [selectedLayout, setSelectedLayout] = useState<LayoutMode>('Classic');
   const [completedDays, setCompletedDays] = useState<Set<DayOfWeek>>(new Set());
   const [showHizbulBahr, setShowHizbulBahr] = useState(false);
@@ -88,32 +81,40 @@ export const useAppState = () => {
     }
   }, []);
 
+  // Batch localStorage updates to reduce I/O operations
   useEffect(() => {
-    // Persist state with validation
-    localStorage.setItem('selectedLayout', selectedLayout);
-    localStorage.setItem('selectedDay', selectedDay);
-    localStorage.setItem('completedDays', JSON.stringify([...completedDays]));
-    localStorage.setItem('arabicVisible', JSON.stringify(arabicVisible));
-    localStorage.setItem('englishVisible', JSON.stringify(englishVisible));
-    localStorage.setItem('audioEnabled', JSON.stringify(audioEnabled));
-    localStorage.setItem('audioMode', audioMode);
-    localStorage.setItem('animationEnabled', JSON.stringify(animationEnabled));
-    localStorage.setItem('viewMode', viewMode);
-    localStorage.setItem('dayButtonsVisible', JSON.stringify(dayButtonsVisible));
-    localStorage.setItem('backgroundOpacity', backgroundOpacity.toString());
-    localStorage.setItem('selectedTheme', selectedTheme);
-    localStorage.setItem('dayIndicatorStyle', dayIndicatorStyle);
-    
-    // Always save valid fonts
-    if (isValidArabicFont(arabicFont)) {
-      localStorage.setItem('arabicFont', arabicFont);
-    }
-    if (isValidEnglishFont(englishFont)) {
-      localStorage.setItem('englishFont', englishFont);
-    }
+    const stateToSave = {
+      selectedLayout,
+      selectedDay,
+      completedDays: [...completedDays],
+      arabicVisible,
+      englishVisible,
+      audioEnabled,
+      audioMode,
+      animationEnabled,
+      viewMode,
+      dayButtonsVisible,
+      backgroundOpacity,
+      selectedTheme,
+      dayIndicatorStyle,
+      arabicFont: isValidArabicFont(arabicFont) ? arabicFont : 'indopak',
+      englishFont: isValidEnglishFont(englishFont) ? englishFont : 'poppins'
+    };
+
+    // Batch all localStorage operations
+    Object.entries(stateToSave).forEach(([key, value]) => {
+      if (key === 'completedDays') {
+        localStorage.setItem(key, JSON.stringify(value));
+      } else if (typeof value === 'boolean') {
+        localStorage.setItem(key, JSON.stringify(value));
+      } else {
+        localStorage.setItem(key, String(value));
+      }
+    });
   }, [selectedLayout, selectedDay, completedDays, arabicVisible, englishVisible, audioEnabled, audioMode, animationEnabled, viewMode, dayButtonsVisible, backgroundOpacity, selectedTheme, dayIndicatorStyle, arabicFont, englishFont]);
 
-  return {
+  // Memoize the return object to prevent unnecessary re-renders
+  return useMemo(() => ({
     selectedDay,
     setSelectedDay,
     selectedLayout,
@@ -154,5 +155,10 @@ export const useAppState = () => {
     setArabicFont,
     englishFont,
     setEnglishFont,
-  };
+  }), [
+    selectedDay, selectedLayout, completedDays, showHizbulBahr, showInfo, showPublisher,
+    arabicVisible, englishVisible, audioEnabled, audioMode, isPlaying, currentAudioIndex,
+    animationEnabled, viewMode, dayButtonsVisible, backgroundOpacity, selectedTheme,
+    dayIndicatorStyle, arabicFont, englishFont
+  ]);
 };

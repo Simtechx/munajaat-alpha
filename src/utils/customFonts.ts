@@ -15,7 +15,7 @@ const CUSTOM_ARABIC_FONTS = {
 };
 
 // Function to load local TTF font
-const loadLocalFont = async (fontConfig: any) => {
+const loadLocalFont = async (fontConfig: { name: string; localPath: string; className: string; fallback: string }) => {
   console.log(`🔄 Loading local font: ${fontConfig.name}`);
   console.log(`📍 Font path: ${fontConfig.localPath}`);
   
@@ -54,7 +54,7 @@ const loadLocalFont = async (fontConfig: any) => {
 };
 
 // Function to dynamically load fonts with enhanced testing
-export const loadCustomFont = async (fontConfig: any) => {
+export const loadCustomFont = async (fontConfig: { name: string; localPath?: string; className: string; fallback: string; isLocal?: boolean; directUrl?: string; base64?: string }) => {
   if (fontConfig.isLocal) {
     return await loadLocalFont(fontConfig);
   }
@@ -122,8 +122,14 @@ export const loadCustomFont = async (fontConfig: any) => {
   }
 };
 
-// Initialize custom fonts with enhanced logging
+// Initialize custom fonts with enhanced logging and performance optimization
 export const initializeCustomFonts = async () => {
+  // Only initialize fonts in production or when explicitly needed
+  if (process.env.NODE_ENV === 'development' && !window.location.search.includes('fonts=true')) {
+    console.log('🚀 Skipping font initialization in development mode');
+    return;
+  }
+
   console.log('🚀 Initializing custom Arabic fonts...');
   console.log('📊 Font Loading Test Results:');
   console.log('================================');
@@ -131,12 +137,16 @@ export const initializeCustomFonts = async () => {
   let successCount = 0;
   let totalCount = 0;
   
-  for (const [key, config] of Object.entries(CUSTOM_ARABIC_FONTS)) {
+  // Load fonts in parallel for better performance
+  const fontPromises = Object.entries(CUSTOM_ARABIC_FONTS).map(async ([key, config]) => {
     totalCount++;
     const success = await loadCustomFont(config);
     if (success) successCount++;
     console.log('--------------------------------');
-  }
+    return { key, success };
+  });
+
+  await Promise.allSettled(fontPromises);
   
   console.log('📈 SUMMARY:');
   console.log(`✅ Successfully loaded: ${successCount}/${totalCount} fonts`);

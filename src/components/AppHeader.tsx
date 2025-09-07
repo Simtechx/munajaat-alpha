@@ -73,13 +73,17 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             </Button>
           </div>
           
-          {/* Clickable Header Text */}
+          {/* Clickable Header Text with Enhanced Visual Feedback */}
           <h1 
-            className="text-3xl md:text-4xl font-bold text-gray-800 cursor-pointer hover:opacity-80 transition-opacity duration-200"
+            className="text-3xl md:text-4xl font-bold text-gray-800 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105 relative group"
             onClick={onHizbulBahrToggle}
             title={`Click to switch to ${showHizbulBahr ? 'Munājāat-e-Maqbūl' : 'Hizbul Bahr'}`}
           >
-            {showHizbulBahr ? 'Hizbul Bahr' : 'Munājāat-e-Maqbūl'}
+            <span className="relative">
+              {showHizbulBahr ? 'Hizbul Bahr' : 'Munājāat-e-Maqbūl'}
+              {/* Subtle indicator for clickable element */}
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-current opacity-0 group-hover:opacity-60 transition-opacity duration-300"></span>
+            </span>
           </h1>
           
           <Button
@@ -92,11 +96,15 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           </Button>
         </div>
         <p 
-          className="text-lg text-gray-700 mb-3 cursor-pointer hover:opacity-80 transition-opacity duration-200"
+          className="text-lg text-gray-700 mb-3 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105 relative group"
           onClick={onHizbulBahrToggle}
           title={`Click to switch to ${showHizbulBahr ? 'Munājāat-e-Maqbūl' : 'Hizbul Bahr'}`}
         >
-          {showHizbulBahr ? 'The Litany of the Sea' : 'A Weekly Journey of Invocations'}
+          <span className="relative">
+            {showHizbulBahr ? 'The Litany of the Sea' : 'A Weekly Journey of Invocations'}
+            {/* Subtle indicator for clickable element */}
+            <span className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-current opacity-0 group-hover:opacity-40 transition-opacity duration-300"></span>
+          </span>
         </p>
         {!showHizbulBahr && (
           <DayBadge 

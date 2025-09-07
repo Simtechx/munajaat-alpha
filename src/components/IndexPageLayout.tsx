@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { AppHeader } from '@/components/AppHeader';
 import { Footer } from '@/components/Footer';
 import { BackToTopButton } from '@/components/BackToTopButton';
@@ -9,7 +9,7 @@ import { OfflineIndicator } from '@/components/OfflineIndicator';
 import { AudioControlsManager } from '@/components/audio/AudioControlsManager';
 import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
 import { ContentWrapper } from '@/components/layout/ContentWrapper';
-// import { Toaster } from '@/components/ui/toaster'; // REMOVED
+import { Toaster } from '@/components/ui/toaster';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { DayIndicatorStyle } from '@/hooks/useAppState';
 
@@ -63,7 +63,7 @@ interface IndexPageLayoutProps {
   };
 }
 
-export const IndexPageLayout: React.FC<IndexPageLayoutProps> = ({
+const IndexPageLayoutComponent: React.FC<IndexPageLayoutProps> = ({
   appState,
   data,
   handlers
@@ -73,6 +73,13 @@ export const IndexPageLayout: React.FC<IndexPageLayoutProps> = ({
   React.useEffect(() => {
     console.log('Audio controls render - audioEnabled:', appState.audioEnabled, 'isPlaying:', appState.isPlaying);
   }, [appState.audioEnabled, appState.isPlaying]);
+
+  // Memoize expensive calculations
+  const totalBlocks = useMemo(() => {
+    return data && !appState.showHizbulBahr && data[appState.selectedDay] 
+      ? data[appState.selectedDay].Arabic.length 
+      : 0;
+  }, [data, appState.showHizbulBahr, appState.selectedDay]);
 
   return (
     <div className="min-h-screen relative">
@@ -113,7 +120,7 @@ export const IndexPageLayout: React.FC<IndexPageLayoutProps> = ({
           onAudioModeToggle={handlers.handleAudioModeToggle}
           selectedDay={appState.selectedDay}
           currentAudioIndex={appState.currentAudioIndex}
-          totalBlocks={data && !appState.showHizbulBahr && data[appState.selectedDay] ? data[appState.selectedDay].Arabic.length : 0}
+          totalBlocks={totalBlocks}
         />
 
         <Footer
@@ -156,8 +163,11 @@ export const IndexPageLayout: React.FC<IndexPageLayoutProps> = ({
           selectedDay={appState.selectedDay}
         />
         
-        {/* <Toaster /> REMOVED */}
+        <Toaster />
       </div>
     </div>
   );
 };
+
+// Export memoized component to prevent unnecessary re-renders
+export const IndexPageLayout = memo(IndexPageLayoutComponent);

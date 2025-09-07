@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page - Munājāt Companion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .status {
+            background: rgba(0, 255, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+        }
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Munājāt Companion</h1>
+        
+        <div class="status">
+            ✅ <strong>Server is running!</strong><br>
+            Python HTTP server is working correctly.
+        </div>
+
+        <div class="instructions">
+            <h2>🚀 Next Steps to Run Your React App</h2>
+            
+            <div class="step">
+                <strong>1. Install Node.js:</strong>
+                <ul>
+                    <li>Go to <a href="https://nodejs.org/" style="color: #ffd700;">https://nodejs.org/</a></li>
+                    <li>Download the LTS version</li>
+                    <li>Run the installer</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <strong>2. Restart your terminal/command prompt</strong>
+            </div>
+
+            <div class="step">
+                <strong>3. Install dependencies:</strong>
+                <div class="code">npm install</div>
+            </div>
+
+            <div class="step">
+                <strong>4. Start the development server:</strong>
+                <div class="code">npm run dev</div>
+            </div>
+
+            <div class="step">
+                <strong>5. Open your browser to:</strong>
+                <div class="code">http://localhost:5173</div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>🔧 Alternative: Use Bun (Faster)</h2>
+            <p>If you prefer a faster alternative to npm:</p>
+            <div class="step">
+                <strong>1. Install Bun:</strong>
+                <div class="code">powershell -c "irm bun.sh/install.ps1 | iex"</div>
+            </div>
+            <div class="step">
+                <strong>2. Install dependencies:</strong>
+                <div class="code">bun install</div>
+            </div>
+            <div class="step">
+                <strong>3. Start development server:</strong>
+                <div class="code">bun dev</div>
+            </div>
+        </div>
+
+        <div class="status">
+            📝 <strong>Current Status:</strong> Python server running on port 8080<br>
+            🌐 <strong>Test URL:</strong> <a href="http://localhost:8080" style="color: #ffd700;">http://localhost:8080</a>
+        </div>
+    </div>
+</body>
+</html> 
