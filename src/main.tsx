@@ -1,5 +1,4 @@
 
-// Force cache bust - React import fix 2025-01-24-002
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
@@ -8,10 +7,8 @@ import './index.css';
 // Lazy load font initialization for better performance
 const initializeCustomFonts = () => import('./utils/customFonts').then(module => module.initializeCustomFonts());
 
-console.log('Main.tsx initializing - React:', React.version);
-
-// Initialize custom fonts
-initializeCustomFonts();
+// Initialize custom fonts asynchronously
+initializeCustomFonts().catch(() => {}); // Silent fail for font loading
 
 // Enhanced service worker registration with offline capabilities
 if ('serviceWorker' in navigator) {
@@ -20,7 +17,6 @@ if ('serviceWorker' in navigator) {
       const registration = await navigator.serviceWorker.register('/sw.js', {
         scope: '/'
       });
-      console.log('✅ Service Worker registered successfully:', registration);
       
       // Check for updates
       registration.addEventListener('updatefound', () => {
@@ -28,31 +24,24 @@ if ('serviceWorker' in navigator) {
         if (newWorker) {
           newWorker.addEventListener('statechange', () => {
             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              console.log('🔄 New content available, refresh to update');
+              // New content available, refresh to update
             }
           });
         }
       });
       
-      // Handle service worker messages
-      navigator.serviceWorker.addEventListener('message', (event) => {
-        console.log('📨 Message from service worker:', event.data);
-      });
-      
     } catch (error) {
-      console.log('❌ Service Worker registration failed:', error);
+      // Service Worker registration failed - app will still work
     }
   });
 }
 
 // Add online/offline event listeners
 window.addEventListener('online', () => {
-  console.log('🌐 Back online - syncing data...');
   document.body.classList.remove('offline-mode');
 });
 
 window.addEventListener('offline', () => {
-  console.log('📱 Gone offline - using cached data');
   document.body.classList.add('offline-mode');
 });
 
@@ -61,11 +50,8 @@ if (!navigator.onLine) {
   document.body.classList.add('offline-mode');
 }
 
-// Clear any existing React roots to prevent conflicts
+// Get root element
 const rootElement = document.getElementById("root")!;
-if ((rootElement as HTMLElement & { _reactInternalInstance?: unknown })._reactInternalInstance) {
-  console.log('🔄 Clearing existing React root');
-}
 
 createRoot(rootElement).render(
   <StrictMode>

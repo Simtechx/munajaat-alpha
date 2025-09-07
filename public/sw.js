@@ -24,25 +24,21 @@ const urlsToCache = [
 
 // Install event - cache essential resources
 self.addEventListener('install', (event) => {
-  console.log('🔧 Service Worker installing...');
   event.waitUntil(
     Promise.all([
       caches.open(CACHE_NAME).then((cache) => {
-        console.log('📦 Caching essential files...');
         return cache.addAll(urlsToCache.slice(0, 6)); // Cache local files first
       }),
       caches.open(ASSETS_CACHE).then((cache) => {
-        console.log('🎨 Caching external assets...');
         return Promise.allSettled(
           urlsToCache.slice(6).map(url => 
             fetch(url, { mode: 'cors' })
               .then(response => cache.put(url, response))
-              .catch(err => console.log(`Failed to cache ${url}:`, err))
+              .catch(() => {}) // Silent fail for external assets
           )
         );
       })
     ]).then(() => {
-      console.log('✅ Service Worker installed successfully');
       self.skipWaiting();
     })
   );
@@ -50,19 +46,16 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean old caches
 self.addEventListener('activate', (event) => {
-  console.log('🚀 Service Worker activating...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME && cacheName !== ASSETS_CACHE && cacheName !== API_CACHE) {
-            console.log('🗑️ Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      console.log('✅ Service Worker activated');
       return self.clients.claim();
     })
   );
@@ -112,7 +105,7 @@ self.addEventListener('fetch', (event) => {
             return response;
           })
           .catch(() => {
-            console.log('Font request failed, no cache available for:', event.request.url);
+            // Font request failed, no cache available
           });
       })
     );
@@ -152,7 +145,6 @@ self.addEventListener('fetch', (event) => {
 // Background sync for when connection is restored
 self.addEventListener('sync', (event) => {
   if (event.tag === 'background-sync') {
-    console.log('🔄 Background sync triggered');
     event.waitUntil(
       // Attempt to fetch fresh data when connection is restored
       fetch('https://script.google.com/macros/s/AKfycbwnStYTIkgdOipSkxcfs_KlAk0HmZXnl1Dp-qXe8l720nLCOszQXO9TFN63jalq8DGo/exec')
@@ -162,7 +154,7 @@ self.addEventListener('sync', (event) => {
             cache.put('api-data', new Response(JSON.stringify(data)));
           });
         })
-        .catch(err => console.log('Background sync failed:', err))
+        .catch(() => {}) // Silent fail for background sync
     );
   }
 });

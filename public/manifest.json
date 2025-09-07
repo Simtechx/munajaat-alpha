@@ -11,6 +11,7 @@
   "categories": ["lifestyle", "productivity", "education"],
   "lang": "en",
   "dir": "ltr",
+  "scope": "/",
   "icons": [
     {
       "src": "/lovable-uploads/3cc78061-98bf-47ed-b312-4efe7649efb3.png",
@@ -38,5 +39,7 @@
     "cross-platform",
     "installable"
   ],
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "offline_enabled": true,
+  "cache_first": true
 }

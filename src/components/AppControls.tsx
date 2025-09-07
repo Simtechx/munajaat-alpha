@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import { DayNavigator } from '@/components/DayNavigator';
 import { ViewControls } from '@/components/ViewControls';
 import { Button } from '@/components/ui/button';
@@ -41,7 +41,7 @@ interface AppControlsProps {
   onDayButtonsToggle?: () => void;
 }
 
-export const AppControls: React.FC<AppControlsProps> = ({
+export const AppControls: React.FC<AppControlsProps> = memo(({
   selectedDay,
   selectedLayout,
   showHizbulBahr,
@@ -107,4 +107,4 @@ export const AppControls: React.FC<AppControlsProps> = ({
 
     </div>
   );
-};
+});

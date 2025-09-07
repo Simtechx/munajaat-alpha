@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Button } from '@/components/ui/button';
-// DayBadge import removed - not used
 import { DayOfWeek, DAY_THEMES } from '@/types';
 import { BookOpen, Info } from 'lucide-react';
 
@@ -40,7 +39,7 @@ interface AppHeaderProps {
   onDayChange?: (day: DayOfWeek) => void;
 }
 
-export const AppHeader: React.FC<AppHeaderProps> = ({ 
+export const AppHeader: React.FC<AppHeaderProps> = memo(({ 
   selectedDay, 
   showHizbulBahr, 
   onShowInfo,
@@ -51,19 +50,40 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   onDayChange
 }) => {
   const theme = DAY_THEMES[selectedDay];
-  
-  // Debug log to see if component is rendering
-  console.log('AppHeader rendering with showHizbulBahr:', showHizbulBahr);
 
   return (
-    <header className="text-center pt-4 pb-4 px-4">
+    <header className="text-center pt-4 pb-4 px-4 relative">
+      {/* Publisher and Info buttons - positioned at extreme right of viewport */}
+      <div className="fixed top-4 right-4 z-50 flex flex-col items-center gap-2">
+        <Button
+          onClick={onShowPublisher}
+          variant="outline"
+          size="sm"
+          className="p-2"
+          title="Publisher Info"
+        >
+          <BookOpen className="w-4 h-4" />
+        </Button>
+        
+        <Button
+          onClick={onShowInfo}
+          variant="outline"
+          size="sm"
+          className="p-2"
+          title="About"
+        >
+          <Info className="w-4 h-4" />
+        </Button>
+      </div>
+
       <div className="max-w-md mx-auto">
         {/* Toggle Switch Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="relative inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200">
+        <div className="flex items-center justify-center mb-6">
+          {/* Mobile: Vertical Switch */}
+          <div className="relative inline-flex flex-col bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200 gap-1 md:hidden">
             <button
               onClick={() => onHizbulBahrToggle()}
-              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center ${
+              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[180px] justify-center group ${
                 !showHizbulBahr 
                   ? 'text-white shadow-lg' 
                   : 'text-gray-500 bg-transparent'
@@ -71,6 +91,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
               style={!showHizbulBahr ? {
                 background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
               } : {}}
+              title="A Weekly Journey of Invocations"
             >
               <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
                 م
@@ -82,7 +103,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             </button>
             <button
               onClick={() => onHizbulBahrToggle()}
-              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center ${
+              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[180px] justify-center group ${
                 showHizbulBahr 
                   ? 'text-white shadow-lg' 
                   : 'text-gray-400 bg-transparent'
@@ -90,6 +111,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
               style={showHizbulBahr ? {
                 background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
               } : {}}
+              title="Divine Litanies of the Sea"
             >
               <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
                 ح
@@ -101,38 +123,49 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             </button>
           </div>
 
-          {/* Publisher and Info buttons moved to top right */}
-          <div className="flex items-center gap-2">
-            <Button
-              onClick={onShowPublisher}
-              variant="outline"
-              size="sm"
-              className="p-2"
-              title="Publisher Information"
+          {/* Web/Tablet: Horizontal Switch */}
+          <div className="relative inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200 hidden md:flex">
+            <button
+              onClick={() => onHizbulBahrToggle()}
+              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center group ${
+                !showHizbulBahr 
+                  ? 'text-white shadow-lg' 
+                  : 'text-gray-500 bg-transparent'
+              }`}
+              style={!showHizbulBahr ? {
+                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
+              } : {}}
+              title="A Weekly Journey of Invocations"
             >
-              <BookOpen className="w-4 h-4" />
-            </Button>
-            
-            <Button
-              onClick={onShowInfo}
-              variant="outline"
-              size="sm"
-              className="p-2"
-              title="Information"
+              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
+                م
+              </span>
+              <div className="flex flex-col items-center text-center">
+                <span className="text-sm font-semibold leading-tight">Munajat e Maqbool</span>
+                <span className="text-xs opacity-90 italic leading-tight">مُناجاتِ مَقبول</span>
+              </div>
+            </button>
+            <button
+              onClick={() => onHizbulBahrToggle()}
+              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center group ${
+                showHizbulBahr 
+                  ? 'text-white shadow-lg' 
+                  : 'text-gray-400 bg-transparent'
+              }`}
+              style={showHizbulBahr ? {
+                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
+              } : {}}
+              title="Divine Litanies of the Sea"
             >
-              <Info className="w-4 h-4" />
-            </Button>
+              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
+                ح
+              </span>
+              <div className="flex flex-col items-center text-center">
+                <span className="text-sm font-semibold leading-tight">Hizbul Bahr</span>
+                <span className="text-xs opacity-90 italic leading-tight">حزب البحر</span>
+              </div>
+            </button>
           </div>
-        </div>
-        
-        <div 
-          className="bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-6 py-2.5 rounded-full shadow-md inline-block mb-6 border-2"
-          style={{
-            borderColor: `${theme.color}40`,
-            boxShadow: `0 4px 12px ${theme.color}20, 0 2px 4px rgba(0,0,0,0.1)`
-          }}
-        >
-          {showHizbulBahr ? 'Divine Litanies of the Sea' : 'A Weekly Journey of Invocations'}
         </div>
 
 
@@ -145,4 +178,4 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       </div>
     </header>
   );
-};
+});
