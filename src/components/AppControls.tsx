@@ -2,7 +2,8 @@
 import React from 'react';
 import { DayNavigator } from '@/components/DayNavigator';
 import { ViewControls } from '@/components/ViewControls';
-import { DayOfWeek, LayoutMode } from '@/types';
+import { Button } from '@/components/ui/button';
+import { DayOfWeek, LayoutMode, DAY_THEMES } from '@/types';
 import { DayIndicatorStyle } from '@/hooks/useAppState';
 
 interface AppControlsProps {
@@ -37,6 +38,7 @@ interface AppControlsProps {
   onArabicFontToggle: (font: string) => void;
   onEnglishFontToggle: (font: string) => void;
   dayButtonsVisible?: boolean;
+  onDayButtonsToggle?: () => void;
 }
 
 export const AppControls: React.FC<AppControlsProps> = ({
@@ -71,6 +73,7 @@ export const AppControls: React.FC<AppControlsProps> = ({
   onArabicFontToggle,
   onEnglishFontToggle,
   dayButtonsVisible = true,
+  onDayButtonsToggle,
 }) => {
 
   return (
@@ -85,6 +88,22 @@ export const AppControls: React.FC<AppControlsProps> = ({
         />
       )}
 
+      {/* Day Badge - positioned below day navigation buttons */}
+      {!showHizbulBahr && (
+        <div className="text-center">
+          <button
+            onClick={onDayButtonsToggle}
+            className="bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border-2"
+            style={{ 
+              borderColor: `${DAY_THEMES[selectedDay].color}40`,
+              boxShadow: `0 4px 12px ${DAY_THEMES[selectedDay].color}20, 0 2px 4px rgba(0,0,0,0.1)`,
+              color: DAY_THEMES[selectedDay].color
+            }}
+          >
+            Du'ās for {selectedDay}
+          </button>
+        </div>
+      )}
 
     </div>
   );

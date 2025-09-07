@@ -88,14 +88,6 @@ export const FontSelectionSection: React.FC<FontSelectionSectionProps> = ({
           </Select>
         </div>
       )}
-      
-      {/* Copyright notice */}
-      <div className="mt-6 pt-4 border-t" style={{ borderColor: `${theme.color}20` }}>
-        <div className="text-xs text-center opacity-60" style={{ color: theme.color }}>
-          © 2026 Munājāat Companion<br />
-          by Simtech W. All rights reserved.
-        </div>
-      </div>
     </div>
   );
 };

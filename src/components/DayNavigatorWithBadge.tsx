@@ -21,33 +21,7 @@ export const DayNavigatorWithBadge: React.FC<DayNavigatorWithBadgeProps> = ({
 
   return (
     <div className="text-center pb-4 px-4">
-      {/* Day Buttons */}
-      {dayButtonsVisible && (
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
-          {DAYS.map((day) => (
-            <Button
-              key={day}
-              onClick={() => onDayChange(day)}
-              variant={selectedDay === day ? "default" : "outline"}
-              size="sm"
-              className={`transition-all duration-300 ${
-                selectedDay === day 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'hover:bg-muted'
-              }`}
-              style={selectedDay === day ? {
-                backgroundColor: theme.color,
-                borderColor: theme.color,
-                color: 'white'
-              } : undefined}
-            >
-              {day}
-            </Button>
-          ))}
-        </div>
-      )}
-
-      {/* Day Badge - moved below day buttons */}
+      {/* Day Badge - only the badge, day buttons are now in AppControls */}
       <div className="mb-4">
         <button
           onClick={onDayButtonsToggle}

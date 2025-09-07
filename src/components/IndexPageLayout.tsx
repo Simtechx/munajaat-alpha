@@ -1,7 +1,7 @@
 
 import React, { memo, useMemo } from 'react';
 import { AppHeader } from '@/components/AppHeader';
-import { DayNavigatorWithBadge } from '@/components/DayNavigatorWithBadge';
+// DayNavigatorWithBadge removed - badge now in AppControls
 import { Footer } from '@/components/Footer';
 import { BackToTopButton } from '@/components/BackToTopButton';
 import { InfoModal } from '@/components/InfoModal';
@@ -105,14 +105,7 @@ const IndexPageLayoutComponent: React.FC<IndexPageLayoutProps> = ({
           onDayChange={handlers.handleDayChange}
         />
 
-        {!appState.showHizbulBahr && (
-          <DayNavigatorWithBadge
-            selectedDay={appState.selectedDay}
-            onDayChange={handlers.handleDayChange}
-            dayButtonsVisible={appState.dayButtonsVisible}
-            onDayButtonsToggle={handlers.handleDayButtonsToggle}
-          />
-        )}
+        {/* DayNavigatorWithBadge removed - badge now in AppControls */}
         
         <ContentWrapper 
           appState={appState}

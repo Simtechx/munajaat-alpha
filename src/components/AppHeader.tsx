@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { DayBadge } from '@/components/DayBadge';
+// DayBadge import removed - not used
 import { DayOfWeek, DAY_THEMES } from '@/types';
 import { BookOpen, Info } from 'lucide-react';
 
@@ -51,35 +51,54 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   onDayChange
 }) => {
   const theme = DAY_THEMES[selectedDay];
+  
+  // Debug log to see if component is rendering
+  console.log('AppHeader rendering with showHizbulBahr:', showHizbulBahr);
 
   return (
     <header className="text-center pt-4 pb-4 px-4">
       <div className="max-w-md mx-auto">
         {/* Toggle Switch Header */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="bg-muted p-1 rounded-full shadow-lg">
-            <div className="grid grid-cols-2 gap-1">
-              <button
-                onClick={() => !showHizbulBahr && onHizbulBahrToggle()}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  !showHizbulBahr 
-                    ? 'bg-primary text-primary-foreground shadow-sm' 
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                Munājāt-e-Maqbūl
-              </button>
-              <button
-                onClick={onHizbulBahrToggle}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  showHizbulBahr 
-                    ? 'bg-primary text-primary-foreground shadow-sm' 
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                Hizbul Bahar
-              </button>
-            </div>
+        <div className="flex items-center justify-between mb-6">
+          <div className="relative inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200">
+            <button
+              onClick={() => onHizbulBahrToggle()}
+              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center ${
+                !showHizbulBahr 
+                  ? 'text-white shadow-lg' 
+                  : 'text-gray-500 bg-transparent'
+              }`}
+              style={!showHizbulBahr ? {
+                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
+              } : {}}
+            >
+              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
+                م
+              </span>
+              <div className="flex flex-col items-center text-center">
+                <span className="text-sm font-semibold leading-tight">Munajat e Maqbool</span>
+                <span className="text-xs opacity-90 italic leading-tight">مُناجاتِ مَقبول</span>
+              </div>
+            </button>
+            <button
+              onClick={() => onHizbulBahrToggle()}
+              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center ${
+                showHizbulBahr 
+                  ? 'text-white shadow-lg' 
+                  : 'text-gray-400 bg-transparent'
+              }`}
+              style={showHizbulBahr ? {
+                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
+              } : {}}
+            >
+              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
+                ح
+              </span>
+              <div className="flex flex-col items-center text-center">
+                <span className="text-sm font-semibold leading-tight">Hizbul Bahr</span>
+                <span className="text-xs opacity-90 italic leading-tight">حزب البحر</span>
+              </div>
+            </button>
           </div>
 
           {/* Publisher and Info buttons moved to top right */}
@@ -106,9 +125,15 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           </div>
         </div>
         
-        <p className="text-sm text-muted-foreground mb-4">
-          {showHizbulBahr ? 'The Litany of the Sea' : 'A Weekly Journey of Invocations'}
-        </p>
+        <div 
+          className="bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium px-6 py-2.5 rounded-full shadow-md inline-block mb-6 border-2"
+          style={{
+            borderColor: `${theme.color}40`,
+            boxShadow: `0 4px 12px ${theme.color}20, 0 2px 4px rgba(0,0,0,0.1)`
+          }}
+        >
+          {showHizbulBahr ? 'Divine Litanies of the Sea' : 'A Weekly Journey of Invocations'}
+        </div>
 
 
         {showHizbulBahr && (

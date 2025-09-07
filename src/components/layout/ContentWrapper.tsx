@@ -42,6 +42,7 @@ interface ContentWrapperProps {
     handleArabicFontChange: (font: string) => void;
     handleEnglishFontChange: (font: string) => void;
     handleBlockSelect: (index: number) => void;
+    handleDayButtonsToggle: () => void;
   };
 }
 
@@ -87,6 +88,7 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({
             onArabicFontToggle={handlers.handleArabicFontChange}
             onEnglishFontToggle={handlers.handleEnglishFontChange}
             dayButtonsVisible={appState.dayButtonsVisible}
+            onDayButtonsToggle={handlers.handleDayButtonsToggle}
           />
         </main>
       </div>
