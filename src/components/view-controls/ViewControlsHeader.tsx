@@ -14,13 +14,13 @@ interface ViewControlsHeaderProps {
   englishVisible: boolean;
   audioEnabled: boolean;
   backgroundOpacity: number;
-  showHizbulBahr: boolean;
+  
   isCompactView: boolean;
   onToggleCompactView: () => void;
   isHybridView: boolean;
   onToggleHybridView: () => void;
   onLayoutChange: (layout: LayoutMode) => void;
-  onHizbulBahrToggle: () => void;
+  
   isMobile: boolean;
   effectiveViewMode: string;
 }
@@ -32,13 +32,12 @@ export const ViewControlsHeader: React.FC<ViewControlsHeaderProps> = ({
   englishVisible,
   audioEnabled,
   backgroundOpacity,
-  showHizbulBahr,
+  
   isCompactView,
   onToggleCompactView,
   isHybridView,
   onToggleHybridView,
   onLayoutChange,
-  onHizbulBahrToggle,
   isMobile,
   effectiveViewMode,
 }) => {
@@ -73,7 +72,7 @@ export const ViewControlsHeader: React.FC<ViewControlsHeaderProps> = ({
           </div>
           <div className="flex items-center gap-2">
             <div className="text-sm font-medium bg-white/20 px-2 py-1 rounded">
-              {showHizbulBahr ? 'Hizbul Bahr' : selectedDay}
+              {selectedDay}
             </div>
             <Button
               onClick={handleViewToggle}
@@ -95,42 +94,16 @@ export const ViewControlsHeader: React.FC<ViewControlsHeaderProps> = ({
         englishVisible={englishVisible}
         audioEnabled={audioEnabled}
         backgroundOpacity={backgroundOpacity}
-        showHizbulBahr={showHizbulBahr}
+        
       />
 
-      {/* Only show Layout Mode Section when NOT in Hizbul Bahr mode and NOT in hybrid view */}
-      {!showHizbulBahr && effectiveViewMode !== 'hybrid' && (
+      {/* Only show Layout Mode Section when NOT in hybrid view */}
+      {effectiveViewMode !== 'hybrid' && (
         <LayoutModeSection
           selectedDay={selectedDay}
           selectedLayout={selectedLayout}
           onLayoutChange={onLayoutChange}
-          showHizbulBahr={showHizbulBahr}
-          onHizbulBahrToggle={onHizbulBahrToggle}
         />
-      )}
-
-      {/* Show Hizbul Bahr toggle button when in Hizbul Bahr mode and not hybrid */}
-      {showHizbulBahr && effectiveViewMode !== 'hybrid' && (
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 text-sm font-semibold text-white/90 pb-2 border-b border-white/20 sheet-background-area">
-            <span>Current Mode</span>
-          </div>
-          <Button
-            onClick={onHizbulBahrToggle}
-            variant="outline"
-            className="w-full h-16 justify-center gap-2 transition-all duration-200 border-white/40 hover:bg-white/10"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              borderColor: 'rgba(255,255,255,0.4)',
-              color: 'white'
-            }}
-          >
-            <div className="flex flex-col items-center">
-              <div className="font-medium">Return to Munājāat Companion</div>
-              <div className="text-xs opacity-80">Weekly Journey Mode</div>
-            </div>
-          </Button>
-        </div>
       )}
     </div>
   );

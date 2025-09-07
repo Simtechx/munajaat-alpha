@@ -10,7 +10,7 @@ interface StatusBarProps {
   englishVisible: boolean;
   audioEnabled: boolean;
   backgroundOpacity: number;
-  showHizbulBahr?: boolean;
+  
 }
 
 export const StatusBar: React.FC<StatusBarProps> = ({
@@ -20,7 +20,7 @@ export const StatusBar: React.FC<StatusBarProps> = ({
   englishVisible,
   audioEnabled,
   backgroundOpacity,
-  showHizbulBahr = false,
+  
 }) => {
   const theme = DAY_THEMES[selectedDay];
 
@@ -31,7 +31,7 @@ export const StatusBar: React.FC<StatusBarProps> = ({
           <div className="flex items-center gap-1">
             <LayoutGrid className="w-3 h-3 text-white" />
             <span className="font-medium text-white">
-              {showHizbulBahr ? 'Hizbul Bahr' : selectedLayout}
+              {selectedLayout}
             </span>
           </div>
           <div className="flex items-center gap-1">

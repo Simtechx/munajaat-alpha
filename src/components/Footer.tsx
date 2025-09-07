@@ -26,8 +26,6 @@ interface FooterProps {
   onEnglishFontToggle?: (font: string) => void;
   arabicFont?: string;
   englishFont?: string;
-  showHizbulBahr: boolean;
-  onHizbulBahrToggle: () => void;
   selectedTheme: 'color' | 'neutral';
   onThemeChange: (theme: 'color' | 'neutral') => void;
   dayIndicatorStyle: DayIndicatorStyle;
@@ -52,8 +50,6 @@ export const Footer: React.FC<FooterProps> = ({
   onEnglishFontToggle,
   arabicFont,
   englishFont,
-  showHizbulBahr,
-  onHizbulBahrToggle,
   selectedTheme,
   onThemeChange,
   dayIndicatorStyle,
@@ -83,8 +79,6 @@ export const Footer: React.FC<FooterProps> = ({
               onEnglishFontToggle={onEnglishFontToggle}
               arabicFont={arabicFont}
               englishFont={englishFont}
-              showHizbulBahr={showHizbulBahr}
-              onHizbulBahrToggle={onHizbulBahrToggle}
               selectedTheme={selectedTheme}
               onThemeChange={onThemeChange}
               dayIndicatorStyle={dayIndicatorStyle}

@@ -29,8 +29,6 @@ interface HybridTabLayoutProps {
   onEnglishFontToggle?: (font: string) => void;
   arabicFont?: string;
   englishFont?: string;
-  showHizbulBahr: boolean;
-  onHizbulBahrToggle: () => void;
   selectedTheme: 'color' | 'neutral';
   onThemeChange: (theme: 'color' | 'neutral') => void;
   dayIndicatorStyle: DayIndicatorStyle;
@@ -93,40 +91,13 @@ export const HybridTabLayout: React.FC<HybridTabLayoutProps> = (props) => {
         </TabsList>
 
       <TabsContent value="display" className={`${compactClass} mt-0`}>
-        {props.showHizbulBahr ? (
-          <div className={`${compactPadding} rounded-lg`} style={{ backgroundColor: theme.color }}>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm font-semibold text-white/90 pb-2 border-b border-white/20">
-                <span>Current Mode</span>
-              </div>
-              <Button
-                onClick={props.onHizbulBahrToggle}
-                variant="outline"
-                className="w-full h-12 justify-center gap-2 transition-all duration-200 border-white/40 hover:bg-white/10"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: 'white'
-                }}
-              >
-                <div className="flex flex-col items-center">
-                  <div className="font-medium text-sm">Return to Munājāat Companion</div>
-                  <div className="text-xs opacity-80">Weekly Journey Mode</div>
-                </div>
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <div className={`${compactPadding} rounded-lg`} style={{ backgroundColor: theme.color }}>
-            <LayoutModeSection
-              selectedDay={props.selectedDay}
-              selectedLayout={props.selectedLayout}
-              onLayoutChange={props.onLayoutChange}
-              showHizbulBahr={props.showHizbulBahr}
-              onHizbulBahrToggle={props.onHizbulBahrToggle}
-            />
-          </div>
-        )}
+        <div className={`${compactPadding} rounded-lg`} style={{ backgroundColor: theme.color }}>
+          <LayoutModeSection
+            selectedDay={props.selectedDay}
+            selectedLayout={props.selectedLayout}
+            onLayoutChange={props.onLayoutChange}
+          />
+        </div>
       </TabsContent>
 
       <TabsContent value="language" className={`${compactClass} mt-0`}>
@@ -214,21 +185,19 @@ export const HybridTabLayout: React.FC<HybridTabLayoutProps> = (props) => {
           </div>
 
           {/* Day Indicator Section - moved below copyright as requested */}
-          {!props.showHizbulBahr && (
-            <div 
-              className={`${compactPadding} rounded-lg border-2`}
-              style={{ 
-                backgroundColor: `${theme.color}20`,
-                borderColor: theme.color
-              }}
-            >
-              <DayIndicatorSection
-                selectedDay={props.selectedDay}
-                dayIndicatorStyle={props.dayIndicatorStyle}
-                onDayIndicatorChange={props.onDayIndicatorChange}
-              />
-            </div>
-          )}
+          <div 
+            className={`${compactPadding} rounded-lg border-2`}
+            style={{ 
+              backgroundColor: `${theme.color}20`,
+              borderColor: theme.color
+            }}
+          >
+            <DayIndicatorSection
+              selectedDay={props.selectedDay}
+              dayIndicatorStyle={props.dayIndicatorStyle}
+              onDayIndicatorChange={props.onDayIndicatorChange}
+            />
+          </div>
         </TabsContent>
       )}
       </Tabs>

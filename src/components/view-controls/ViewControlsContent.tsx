@@ -27,8 +27,6 @@ interface ViewControlsContentProps {
   onEnglishFontToggle?: (font: string) => void;
   arabicFont?: string;
   englishFont?: string;
-  showHizbulBahr: boolean;
-  onHizbulBahrToggle: () => void;
   selectedTheme: 'color' | 'neutral';
   onThemeChange: (theme: 'color' | 'neutral') => void;
   dayIndicatorStyle: DayIndicatorStyle;
@@ -55,8 +53,6 @@ export const ViewControlsContent: React.FC<ViewControlsContentProps> = ({
   onEnglishFontToggle,
   arabicFont = 'indopak',
   englishFont = 'poppins',
-  showHizbulBahr,
-  onHizbulBahrToggle,
   selectedTheme,
   onThemeChange,
   dayIndicatorStyle,
@@ -95,8 +91,6 @@ export const ViewControlsContent: React.FC<ViewControlsContentProps> = ({
     onEnglishFontToggle,
     arabicFont,
     englishFont,
-    showHizbulBahr,
-    onHizbulBahrToggle,
     selectedTheme,
     onThemeChange,
     dayIndicatorStyle,
@@ -120,8 +114,6 @@ export const ViewControlsContent: React.FC<ViewControlsContentProps> = ({
     onEnglishFontToggle,
     arabicFont,
     englishFont,
-    showHizbulBahr,
-    onHizbulBahrToggle,
     selectedTheme,
     onThemeChange,
     dayIndicatorStyle,
@@ -182,7 +174,7 @@ export const ViewControlsContent: React.FC<ViewControlsContentProps> = ({
             </div>
           )}
 
-          {showAdvancedControls && !showHizbulBahr && (
+          {showAdvancedControls && (
             <div 
               className="p-4 rounded-lg border-3 sheet-background-area" 
               style={{ 

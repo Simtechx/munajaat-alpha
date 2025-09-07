@@ -28,8 +28,6 @@ interface CompactTabLayoutProps {
   onEnglishFontToggle?: (font: string) => void;
   arabicFont?: string;
   englishFont?: string;
-  showHizbulBahr: boolean;
-  onHizbulBahrToggle: () => void;
   selectedTheme: 'color' | 'neutral';
   onThemeChange: (theme: 'color' | 'neutral') => void;
   dayIndicatorStyle: DayIndicatorStyle;
@@ -68,27 +66,23 @@ export const CompactTabLayout: React.FC<CompactTabLayoutProps> = (props) => {
             selectedDay={props.selectedDay}
             selectedLayout={props.selectedLayout}
             onLayoutChange={props.onLayoutChange}
-            showHizbulBahr={props.showHizbulBahr}
-            onHizbulBahrToggle={props.onHizbulBahrToggle}
           />
         </div>
         
-        {!props.showHizbulBahr && (
-          <div 
-            className="p-4 rounded-lg border-3" 
-            style={{ 
-              backgroundColor: `${theme.color}20`,
-              borderColor: theme.color,
-              borderWidth: '3px'
-            }}
-          >
-            <DayIndicatorSection
-              selectedDay={props.selectedDay}
-              dayIndicatorStyle={props.dayIndicatorStyle}
-              onDayIndicatorChange={props.onDayIndicatorChange}
-            />
-          </div>
-        )}
+        <div 
+          className="p-4 rounded-lg border-3" 
+          style={{ 
+            backgroundColor: `${theme.color}20`,
+            borderColor: theme.color,
+            borderWidth: '3px'
+          }}
+        >
+          <DayIndicatorSection
+            selectedDay={props.selectedDay}
+            dayIndicatorStyle={props.dayIndicatorStyle}
+            onDayIndicatorChange={props.onDayIndicatorChange}
+          />
+        </div>
       </TabsContent>
 
       <TabsContent value="audio" className="space-y-4 mt-0">

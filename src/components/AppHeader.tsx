@@ -56,28 +56,53 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     <header className="text-center pt-4 pb-4 px-4">
       <div className="max-w-md mx-auto">
         {/* Toggle Switch Header */}
-        <div className="bg-muted p-1 rounded-full shadow-lg mb-3">
-          <div className="grid grid-cols-2 gap-1">
-            <button
-              onClick={() => !showHizbulBahr && onHizbulBahrToggle()}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                !showHizbulBahr 
-                  ? 'bg-primary text-primary-foreground shadow-sm' 
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
+        <div className="flex items-center justify-between mb-3">
+          <div className="bg-muted p-1 rounded-full shadow-lg">
+            <div className="grid grid-cols-2 gap-1">
+              <button
+                onClick={() => !showHizbulBahr && onHizbulBahrToggle()}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  !showHizbulBahr 
+                    ? 'bg-primary text-primary-foreground shadow-sm' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Munājāt-e-Maqbūl
+              </button>
+              <button
+                onClick={onHizbulBahrToggle}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  showHizbulBahr 
+                    ? 'bg-primary text-primary-foreground shadow-sm' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Hizbul Bahar
+              </button>
+            </div>
+          </div>
+
+          {/* Publisher and Info buttons moved to top right */}
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={onShowPublisher}
+              variant="outline"
+              size="sm"
+              className="p-2"
+              title="Publisher Information"
             >
-              Munājāt-e-Maqbūl
-            </button>
-            <button
-              onClick={() => showHizbulBahr && onHizbulBahrToggle()}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                showHizbulBahr 
-                  ? 'bg-primary text-primary-foreground shadow-sm' 
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
+              <BookOpen className="w-4 h-4" />
+            </Button>
+            
+            <Button
+              onClick={onShowInfo}
+              variant="outline"
+              size="sm"
+              className="p-2"
+              title="Information"
             >
-              Hizbul Bahar
-            </button>
+              <Info className="w-4 h-4" />
+            </Button>
           </div>
         </div>
         
@@ -85,28 +110,6 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           {showHizbulBahr ? 'The Litany of the Sea' : 'A Weekly Journey of Invocations'}
         </p>
 
-        {/* Publisher and Info buttons */}
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <Button
-            onClick={onShowPublisher}
-            variant="outline"
-            size="sm"
-            className="p-2"
-            title="Publisher Information"
-          >
-            <BookOpen className="w-4 h-4" />
-          </Button>
-          
-          <Button
-            onClick={onShowInfo}
-            variant="outline"
-            size="sm"
-            className="p-2"
-            title="Information"
-          >
-            <Info className="w-4 h-4" />
-          </Button>
-        </div>
 
         {showHizbulBahr && (
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground shadow-sm">

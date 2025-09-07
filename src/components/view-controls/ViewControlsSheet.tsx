@@ -25,8 +25,6 @@ interface ViewControlsSheetProps {
   onEnglishFontToggle?: (font: string) => void;
   arabicFont?: string;
   englishFont?: string;
-  showHizbulBahr: boolean;
-  onHizbulBahrToggle: () => void;
   selectedTheme: 'color' | 'neutral';
   onThemeChange: (theme: 'color' | 'neutral') => void;
   dayIndicatorStyle: DayIndicatorStyle;
@@ -82,7 +80,7 @@ export const ViewControlsSheet: React.FC<ViewControlsSheetProps> = (props) => {
           <Settings className="w-4 h-4" />
           {!isMobile && (
             <span className="text-sm font-medium">
-              {props.showHizbulBahr ? 'Munājāat Companion' : getLayoutDisplayName(props.selectedLayout)}
+              {getLayoutDisplayName(props.selectedLayout)}
             </span>
           )}
         </Button>
@@ -106,13 +104,13 @@ export const ViewControlsSheet: React.FC<ViewControlsSheetProps> = (props) => {
           englishVisible={props.englishVisible}
           audioEnabled={props.audioEnabled}
           backgroundOpacity={props.backgroundOpacity}
-          showHizbulBahr={props.showHizbulBahr}
+          
           isCompactView={props.isCompactView}
           onToggleCompactView={props.onToggleCompactView}
           isHybridView={props.isHybridView}
           onToggleHybridView={props.onToggleHybridView}
           onLayoutChange={props.onLayoutChange}
-          onHizbulBahrToggle={props.onHizbulBahrToggle}
+          
           isMobile={isMobile}
           effectiveViewMode={effectiveViewMode}
         />
@@ -133,8 +131,6 @@ export const ViewControlsSheet: React.FC<ViewControlsSheetProps> = (props) => {
           onEnglishFontToggle={props.onEnglishFontToggle}
           arabicFont={props.arabicFont}
           englishFont={props.englishFont}
-          showHizbulBahr={props.showHizbulBahr}
-          onHizbulBahrToggle={props.onHizbulBahrToggle}
           selectedTheme={props.selectedTheme}
           onThemeChange={props.onThemeChange}
           dayIndicatorStyle={props.dayIndicatorStyle}
