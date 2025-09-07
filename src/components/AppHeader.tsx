@@ -37,6 +37,7 @@ interface AppHeaderProps {
   onHizbulBahrToggle: () => void;
   dayButtonsVisible?: boolean;
   onDayButtonsToggle?: () => void;
+  onDayChange?: (day: DayOfWeek) => void;
 }
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ 
@@ -46,78 +47,70 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   onShowPublisher,
   onHizbulBahrToggle,
   dayButtonsVisible,
-  onDayButtonsToggle
+  onDayButtonsToggle,
+  onDayChange
 }) => {
   const theme = DAY_THEMES[selectedDay];
 
   return (
-    <header className="text-center pt-6 pb-4 px-4">
-      <div 
-        className="inline-block bg-white/20 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg border-2"
-        style={{ borderColor: theme.color }}
-      >
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <div className="relative">
-            <Button
-              onClick={onShowPublisher}
-              variant="ghost"
-              size="sm"
-              className="p-2 rounded-full border-2 hover:bg-white/10 transition-all duration-300"
-              style={{ borderColor: theme.color }}
-              title="Publisher Information"
+    <header className="text-center pt-4 pb-4 px-4">
+      <div className="max-w-md mx-auto">
+        {/* Toggle Switch Header */}
+        <div className="bg-muted p-1 rounded-full shadow-lg mb-3">
+          <div className="grid grid-cols-2 gap-1">
+            <button
+              onClick={() => !showHizbulBahr && onHizbulBahrToggle()}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                !showHizbulBahr 
+                  ? 'bg-primary text-primary-foreground shadow-sm' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
-              <BookOpen 
-                className="w-8 h-8 transition-all duration-300 hover:scale-110" 
-                style={{ color: theme.color }} 
-              />
-            </Button>
+              Munājāt-e-Maqbūl
+            </button>
+            <button
+              onClick={() => showHizbulBahr && onHizbulBahrToggle()}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                showHizbulBahr 
+                  ? 'bg-primary text-primary-foreground shadow-sm' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Hizbul Bahar
+            </button>
           </div>
-          
-          {/* Clickable Header Text with Enhanced Visual Feedback */}
-          <h1 
-            className="text-3xl md:text-4xl font-bold text-gray-800 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105 relative group"
-            onClick={onHizbulBahrToggle}
-            title={`Click to switch to ${showHizbulBahr ? 'Munājāat-e-Maqbūl' : 'Hizbul Bahr'}`}
+        </div>
+        
+        <p className="text-sm text-muted-foreground mb-4">
+          {showHizbulBahr ? 'The Litany of the Sea' : 'A Weekly Journey of Invocations'}
+        </p>
+
+        {/* Publisher and Info buttons */}
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Button
+            onClick={onShowPublisher}
+            variant="outline"
+            size="sm"
+            className="p-2"
+            title="Publisher Information"
           >
-            <span className="relative">
-              {showHizbulBahr ? 'Hizbul Bahr' : 'Munājāat-e-Maqbūl'}
-              {/* Subtle indicator for clickable element */}
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-current opacity-0 group-hover:opacity-60 transition-opacity duration-300"></span>
-            </span>
-          </h1>
+            <BookOpen className="w-4 h-4" />
+          </Button>
           
           <Button
             onClick={onShowInfo}
-            variant="ghost"
+            variant="outline"
             size="sm"
-            className="ml-2 text-gray-600 hover:text-gray-800"
+            className="p-2"
+            title="Information"
           >
-            <Info className="w-5 h-5" />
+            <Info className="w-4 h-4" />
           </Button>
         </div>
-        <p 
-          className="text-lg text-gray-700 mb-3 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105 relative group"
-          onClick={onHizbulBahrToggle}
-          title={`Click to switch to ${showHizbulBahr ? 'Munājāat-e-Maqbūl' : 'Hizbul Bahr'}`}
-        >
-          <span className="relative">
-            {showHizbulBahr ? 'The Litany of the Sea' : 'A Weekly Journey of Invocations'}
-            {/* Subtle indicator for clickable element */}
-            <span className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-current opacity-0 group-hover:opacity-40 transition-opacity duration-300"></span>
-          </span>
-        </p>
-        {!showHizbulBahr && (
-          <DayBadge 
-            day={selectedDay} 
-            onClick={onDayButtonsToggle}
-          />
-        )}
+
         {showHizbulBahr && (
-          <div 
-            className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white shadow-sm"
-            style={{ backgroundColor: theme.color }}
-          >
-            <WavesIcon className="w-4 h-4 mr-2" />
+          <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground shadow-sm">
+            <WavesIcon className="w-3 h-3 mr-1" />
             Special Spiritual Protection
           </div>
         )}

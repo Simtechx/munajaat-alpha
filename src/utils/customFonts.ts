@@ -55,8 +55,13 @@ const loadLocalFont = async (fontConfig: { name: string; localPath: string; clas
 
 // Function to dynamically load fonts with enhanced testing
 export const loadCustomFont = async (fontConfig: { name: string; localPath?: string; className: string; fallback: string; isLocal?: boolean; directUrl?: string; base64?: string }) => {
-  if (fontConfig.isLocal) {
-    return await loadLocalFont(fontConfig);
+  if (fontConfig.isLocal && fontConfig.localPath) {
+    return await loadLocalFont({ 
+      name: fontConfig.name, 
+      localPath: fontConfig.localPath, 
+      className: fontConfig.className, 
+      fallback: fontConfig.fallback 
+    });
   }
 
   console.log(`🔄 Testing font: ${fontConfig.name}`);

@@ -41,7 +41,7 @@ export const memoize = <T extends (...args: unknown[]) => unknown>(
       return cache.get(key)!;
     }
     
-    const result = func(...args);
+    const result = func(...args) as ReturnType<T>;
     cache.set(key, result);
     return result;
   }) as T;
@@ -61,7 +61,7 @@ export const measurePerformance = <T extends (...args: unknown[]) => unknown>(
       console.log(`${name} took ${(end - start).toFixed(2)}ms`);
     }
     
-    return result;
+    return result as ReturnType<T>;
   }) as T;
 };
 
