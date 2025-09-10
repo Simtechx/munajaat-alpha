@@ -61,8 +61,9 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-          <Toaster />
-          <Sonner />
+          {/* Temporarily disabled Toasters to debug React hooks issue */}
+          {/* <Toaster />
+          <Sonner /> */}
         </QueryClientProvider>
       </BrowserRouter>
     </ErrorBoundary>

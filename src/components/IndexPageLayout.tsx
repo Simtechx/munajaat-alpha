@@ -1,5 +1,5 @@
 
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useEffect } from 'react';
 import { AppHeader } from '@/components/AppHeader';
 // DayNavigatorWithBadge removed - badge now in AppControls
 import { Footer } from '@/components/Footer';
@@ -10,7 +10,7 @@ import { OfflineIndicator } from '@/components/OfflineIndicator';
 import { AudioControlsManager } from '@/components/audio/AudioControlsManager';
 import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
 import { ContentWrapper } from '@/components/layout/ContentWrapper';
-import { Toaster } from '@/components/ui/toaster';
+// Temporarily disabled: import { Toaster } from '@/components/ui/toaster';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { DayIndicatorStyle } from '@/hooks/useAppState';
 
@@ -71,7 +71,7 @@ const IndexPageLayoutComponent: React.FC<IndexPageLayoutProps> = ({
 }) => {
   
   // Debug audio state
-  React.useEffect(() => {
+  useEffect(() => {
     console.log('Audio controls render - audioEnabled:', appState.audioEnabled, 'isPlaying:', appState.isPlaying);
   }, [appState.audioEnabled, appState.isPlaying]);
 
@@ -165,7 +165,8 @@ const IndexPageLayoutComponent: React.FC<IndexPageLayoutProps> = ({
           selectedDay={appState.selectedDay}
         />
         
-        <Toaster />
+        {/* Temporarily disabled to debug React hooks issue */}
+        {/* <Toaster /> */}
       </div>
     </div>
   );

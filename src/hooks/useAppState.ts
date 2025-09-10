@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { getCurrentDay } from '@/utils/dateUtils';
 import { isValidArabicFont, isValidEnglishFont } from '@/utils/fontUtils';
@@ -10,8 +10,15 @@ export type DayIndicatorStyle =
   | 'floating-badge'
   | 'inverted';
 
+console.log('useAppState module loading - React version:', React?.version);
+console.log('useState function:', useState);
+
 export const useAppState = () => {
+  console.log('useAppState hook called');
+  
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>(getCurrentDay());
+  console.log('useState worked for selectedDay');
+  
   const [selectedLayout, setSelectedLayout] = useState<LayoutMode>('Classic');
   const [completedDays, setCompletedDays] = useState<Set<DayOfWeek>>(new Set());
   const [showHizbulBahr, setShowHizbulBahr] = useState(false);
