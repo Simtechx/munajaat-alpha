@@ -32,6 +32,12 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    
+    /* Landing page card colors */
+    --munajaat-primary: 30 70% 50%;
+    --munajaat-secondary: 25 65% 65%;
+    --hizbul-primary: 220 70% 45%;
+    --hizbul-secondary: 215 65% 60%;
   }
 
   .dark {
@@ -59,6 +65,12 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
+    /* Landing page card colors for dark mode */
+    --munajaat-primary: 35 75% 55%;
+    --munajaat-secondary: 30 70% 70%;
+    --hizbul-primary: 220 75% 50%;
+    --hizbul-secondary: 215 70% 65%;
   }
 }
 

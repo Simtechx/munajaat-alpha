@@ -69,6 +69,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        munajaat: {
+          primary: "hsl(var(--munajaat-primary))",
+          secondary: "hsl(var(--munajaat-secondary))",
+        },
+        hizbul: {
+          primary: "hsl(var(--hizbul-primary))",
+          secondary: "hsl(var(--hizbul-secondary))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

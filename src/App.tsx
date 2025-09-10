@@ -9,7 +9,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Lazy load components for better performance
 const TestComponent = lazy(() => import("./TestComponent"));
+const HomePage = lazy(() => import("./pages/HomePage"));
 const Index = lazy(() => import("./pages/Index"));
+const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 console.log('App.tsx loading - React version:', React.version);
@@ -54,7 +56,9 @@ const App = () => {
           <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
             <Routes>
               <Route path="/test" element={<TestComponent />} />
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/munajaat" element={<Index />} />
+              <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

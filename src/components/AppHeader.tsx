@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { DayOfWeek, DAY_THEMES } from '@/types';
-import { BookOpen, Info } from 'lucide-react';
+import { BookOpen, Info, Home, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Proper Waves SVG Icon Component with overlapping circular wave patterns
 const WavesIcon: React.FC<{ className?: string; style?: React.CSSProperties }> = ({ className, style }) => (
@@ -52,129 +53,65 @@ export const AppHeader: React.FC<AppHeaderProps> = memo(({
   const theme = DAY_THEMES[selectedDay];
 
   return (
-    <header className="text-center pt-4 pb-4 px-4 relative">
-      {/* Publisher and Info buttons - positioned at extreme right of viewport */}
-      <div className="fixed top-4 right-4 z-50 flex flex-col items-center gap-2">
-        <Button
-          onClick={onShowPublisher}
-          variant="outline"
-          size="sm"
-          className="p-2"
-          title="Publisher Info"
-        >
-          <BookOpen className="w-4 h-4" />
-        </Button>
-        
-        <Button
-          onClick={onShowInfo}
-          variant="outline"
-          size="sm"
-          className="p-2"
-          title="About"
-        >
-          <Info className="w-4 h-4" />
-        </Button>
-      </div>
-
-      <div className="max-w-md mx-auto">
-        {/* Toggle Switch Header */}
-        <div className="flex items-center justify-center mb-6">
-          {/* Mobile: Vertical Switch */}
-          <div className="relative inline-flex flex-col bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200 gap-1 md:hidden">
-            <button
-              onClick={() => onHizbulBahrToggle()}
-              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[180px] justify-center group ${
-                !showHizbulBahr 
-                  ? 'text-white shadow-lg' 
-                  : 'text-gray-500 bg-transparent'
-              }`}
-              style={!showHizbulBahr ? {
-                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
-              } : {}}
-              title="A Weekly Journey of Invocations"
+    <header className="relative w-full bg-background/80 backdrop-blur-sm border-b border-border/50 z-40">
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
+          {/* Left Side - Home Button */}
+          <div className="flex-1">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 p-2 hover:bg-accent rounded-lg transition-colors"
+              title="Go to Home"
             >
-              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
-                م
-              </span>
-              <div className="flex flex-col items-center text-center">
-                <span className="text-sm font-semibold leading-tight">Munajat e Maqbool</span>
-                <span className="text-xs opacity-90 italic leading-tight">مُناجاتِ مَقبول</span>
-              </div>
-            </button>
-            <button
-              onClick={() => onHizbulBahrToggle()}
-              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[180px] justify-center group ${
-                showHizbulBahr 
-                  ? 'text-white shadow-lg' 
-                  : 'text-gray-400 bg-transparent'
-              }`}
-              style={showHizbulBahr ? {
-                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
-              } : {}}
-              title="Divine Litanies of the Sea"
-            >
-              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
-                ح
-              </span>
-              <div className="flex flex-col items-center text-center">
-                <span className="text-sm font-semibold leading-tight">Hizbul Bahr</span>
-                <span className="text-xs opacity-90 italic leading-tight">حزب البحر</span>
-              </div>
-            </button>
+              <Home className="w-5 h-5 text-muted-foreground hover:text-foreground" />
+              <span className="text-sm font-medium text-muted-foreground hover:text-foreground">Home</span>
+            </Link>
           </div>
 
-          {/* Web/Tablet: Horizontal Switch */}
-          <div className="relative inline-flex bg-gray-100 rounded-full p-1 shadow-inner border border-gray-200 hidden md:flex">
+          {/* Center - Switch */}
+          <div className="flex-1 flex justify-center">
+            <div className="inline-flex bg-muted rounded-lg p-1 shadow-sm border border-border/30">
+              <button
+                onClick={() => onHizbulBahrToggle()}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                  !showHizbulBahr
+                    ? 'bg-background text-foreground shadow-sm border border-border/20'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Munājāt-e-Maqbūl
+              </button>
+              <button
+                onClick={() => onHizbulBahrToggle()}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                  showHizbulBahr
+                    ? 'bg-background text-foreground shadow-sm border border-border/20'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Hizbul Bahar
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side - Icons */}
+          <div className="flex flex-1 justify-end items-center gap-2">
             <button
-              onClick={() => onHizbulBahrToggle()}
-              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center group ${
-                !showHizbulBahr 
-                  ? 'text-white shadow-lg' 
-                  : 'text-gray-500 bg-transparent'
-              }`}
-              style={!showHizbulBahr ? {
-                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
-              } : {}}
-              title="A Weekly Journey of Invocations"
+              onClick={onShowPublisher}
+              className="p-2 hover:bg-accent rounded-lg transition-colors"
+              title="Publisher Information"
             >
-              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
-                م
-              </span>
-              <div className="flex flex-col items-center text-center">
-                <span className="text-sm font-semibold leading-tight">Munajat e Maqbool</span>
-                <span className="text-xs opacity-90 italic leading-tight">مُناجاتِ مَقبول</span>
-              </div>
+              <FileText className="w-5 h-5 text-muted-foreground hover:text-foreground" />
             </button>
             <button
-              onClick={() => onHizbulBahrToggle()}
-              className={`relative px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 min-w-[160px] justify-center group ${
-                showHizbulBahr 
-                  ? 'text-white shadow-lg' 
-                  : 'text-gray-400 bg-transparent'
-              }`}
-              style={showHizbulBahr ? {
-                background: `linear-gradient(135deg, ${theme.color}, ${theme.color}dd)`
-              } : {}}
-              title="Divine Litanies of the Sea"
+              onClick={onShowInfo}
+              className="p-2 hover:bg-accent rounded-lg transition-colors"
+              title="App Information"
             >
-              <span className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-sm font-bold text-gray-700 flex-shrink-0">
-                ح
-              </span>
-              <div className="flex flex-col items-center text-center">
-                <span className="text-sm font-semibold leading-tight">Hizbul Bahr</span>
-                <span className="text-xs opacity-90 italic leading-tight">حزب البحر</span>
-              </div>
+              <Info className="w-5 h-5 text-muted-foreground hover:text-foreground" />
             </button>
           </div>
         </div>
-
-
-        {showHizbulBahr && (
-          <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground shadow-sm">
-            <WavesIcon className="w-3 h-3 mr-1" />
-            Special Spiritual Protection
-          </div>
-        )}
       </div>
     </header>
   );
