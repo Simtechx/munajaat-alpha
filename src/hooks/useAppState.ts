@@ -10,7 +10,7 @@ export type DayIndicatorStyle =
   | 'floating-badge'
   | 'inverted';
 
-console.log('useState function:', useState);
+
 
 export const useAppState = () => {
   console.log('useAppState hook called');
