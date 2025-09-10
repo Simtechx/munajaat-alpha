@@ -1,8 +1,6 @@
 
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -61,9 +59,6 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-          {/* Temporarily disabled Toasters to debug React hooks issue */}
-          {/* <Toaster />
-          <Sonner /> */}
         </QueryClientProvider>
       </BrowserRouter>
     </ErrorBoundary>

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { DayOfWeek, LayoutMode } from '@/types';
 import { getCurrentDay } from '@/utils/dateUtils';
 import { isValidArabicFont, isValidEnglishFont } from '@/utils/fontUtils';
@@ -10,7 +10,6 @@ export type DayIndicatorStyle =
   | 'floating-badge'
   | 'inverted';
 
-console.log('useAppState module loading - React version:', React?.version);
 console.log('useState function:', useState);
 
 export const useAppState = () => {
