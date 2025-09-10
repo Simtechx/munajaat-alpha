@@ -1,5 +1,5 @@
 
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -12,8 +12,6 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const Index = lazy(() => import("./pages/Index"));
 const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-
-console.log('App.tsx loading - React version:', React.version);
 
 // Create QueryClient instance  
 const queryClient = new QueryClient({
@@ -46,7 +44,7 @@ const ErrorFallback = ({ error }: { error: Error }) => (
 );
 
 const App = () => {
-  console.log('App component rendering successfully, React version:', React.version);
+  console.log('App component rendering successfully');
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
