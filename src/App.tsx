@@ -1,5 +1,5 @@
 
-import { Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -44,7 +44,7 @@ const ErrorFallback = ({ error }: { error: Error }) => (
 );
 
 const App = () => {
-  console.log('App component rendering successfully');
+  console.log('App component rendering successfully, React version:', React.version);
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
