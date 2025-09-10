@@ -1,5 +1,4 @@
 
-// Restored full functionality with React version fixes
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "@/components/ui/toaster";
@@ -16,7 +15,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 console.log('App.tsx loading - React version:', React.version);
 
-// Create QueryClient instance
+// Create QueryClient instance  
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
