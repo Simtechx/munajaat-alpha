@@ -47,12 +47,12 @@ const ErrorFallback = ({ error }: { error: Error }) => (
 );
 
 const App = () => {
-  console.log('App component rendering successfully');
+  console.log('App component rendering successfully, React version:', React.version);
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
           <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
             <Routes>
               <Route path="/test" element={<TestComponent />} />
@@ -64,8 +64,8 @@ const App = () => {
           </Suspense>
           <Toaster />
           <Sonner />
-        </BrowserRouter>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 };

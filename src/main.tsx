@@ -4,6 +4,9 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
+// Ensure React is properly initialized
+console.log('React version in main.tsx:', React.version);
+
 // Lazy load font initialization for better performance
 const initializeCustomFonts = () => import('./utils/customFonts').then(module => module.initializeCustomFonts());
 
