@@ -5,11 +5,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 
 // Lazy load components for better performance
+const SimpleTest = lazy(() => import("./SimpleTest"));
 const TestComponent = lazy(() => import("./TestComponent"));
 const HomePage = lazy(() => import("./pages/HomePage"));
-const Index = lazy(() => import("./pages/Index"));
-const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
-const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Create QueryClient instance  
 const queryClient = new QueryClient({
@@ -55,9 +53,8 @@ const App = () => {
               <Routes>
                 <Route path="/test" element={<TestComponent />} />
                 <Route path="/" element={<HomePage />} />
-                <Route path="/munajaat" element={<Index />} />
-                <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path="/simple" element={<SimpleTest />} />
+                <Route path="*" element={<SimpleTest />} />
               </Routes>
             </Suspense>
           </QueryClientProvider>
