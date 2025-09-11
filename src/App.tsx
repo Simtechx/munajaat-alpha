@@ -13,20 +13,6 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 console.log('App.tsx loading - React version:', React.version);
 
-// Create QueryClient instance  
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 30, // 30 minutes
-      retry: (failureCount, error) => {
-        if (!navigator.onLine) return false;
-        return failureCount < 3;
-      },
-    },
-  },
-});
-
 // Error boundary component
 const ErrorFallback = ({ error }: { error: Error }) => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -43,7 +29,21 @@ const ErrorFallback = ({ error }: { error: Error }) => (
   </div>
 );
 
-const App = () => {
+// Create QueryClient instance outside component to avoid recreation
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes
+      retry: (failureCount, error) => {
+        if (!navigator.onLine) return false;
+        return failureCount < 3;
+      },
+    },
+  },
+});
+
+const App: React.FC = () => {
   console.log('App component rendering successfully, React version:', React.version);
   
   return (
