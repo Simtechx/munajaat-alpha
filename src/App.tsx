@@ -13,22 +13,6 @@ const Index = lazy(() => import("./pages/Index"));
 const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-console.log('App.tsx loading - React version:', React.version);
-
-// Create QueryClient instance  
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 30, // 30 minutes
-      retry: (failureCount, error) => {
-        if (!navigator.onLine) return false;
-        return failureCount < 3;
-      },
-    },
-  },
-});
-
 // Error boundary component
 const ErrorFallback = ({ error }: { error: Error }) => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -45,9 +29,21 @@ const ErrorFallback = ({ error }: { error: Error }) => (
   </div>
 );
 
-const App = () => {
-  console.log('App component rendering successfully, React version:', React.version);
-  
+// Create QueryClient instance outside component
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes
+      retry: (failureCount, error) => {
+        if (!navigator.onLine) return false;
+        return failureCount < 3;
+      },
+    },
+  },
+});
+
+function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <BrowserRouter>
@@ -67,6 +63,6 @@ const App = () => {
       </BrowserRouter>
     </ErrorBoundary>
   );
-};
+}
 
 export default App;
