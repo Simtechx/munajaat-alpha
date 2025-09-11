@@ -3,13 +3,13 @@ import { useEffect, useCallback, useMemo } from 'react';
 import { DayOfWeek } from '@/types';
 import { useDataFetcher } from '@/hooks/useDataFetcher';
 import { useAppState } from '@/hooks/useAppState';
-import { useToast } from '@/hooks/use-toast';
+// import { useToast } from '@/hooks/use-toast';
 import { initializeCustomFonts } from '@/utils/customFonts';
 
 export const useIndexPageLogic = () => {
   const appStateHook = useAppState();
   const { data, loading, error } = useDataFetcher();
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   // Initialize custom fonts on component mount
   useEffect(() => {
@@ -31,28 +31,28 @@ export const useIndexPageLogic = () => {
     appStateHook.setShowHizbulBahr(false);
     appStateHook.setIsPlaying(false);
     appStateHook.setCurrentAudioIndex(0);
-    toast({
-      title: `Switched to ${day}`,
-      description: `Now viewing ${day}'s spiritual journey`,
-    });
-  }, [appStateHook, toast]);
+    // toast({
+    //   title: `Switched to ${day}`,
+    //   description: `Now viewing ${day}'s spiritual journey`,
+    // });
+  }, [appStateHook]);
 
   const handleHizbulBahrToggle = useCallback(() => {
     appStateHook.setShowHizbulBahr(!appStateHook.showHizbulBahr);
     appStateHook.setIsPlaying(false);
     appStateHook.setCurrentAudioIndex(0);
-    if (!appStateHook.showHizbulBahr) {
-      toast({
-        title: "Hizbul Bahr",
-        description: "The Litany of the Sea - Special spiritual protection",
-      });
-    } else {
-      toast({
-        title: "Munājāat Companion",
-        description: "A Weekly Journey of Divine Invocations",
-      });
-    }
-  }, [appStateHook, toast]);
+    // if (!appStateHook.showHizbulBahr) {
+    //   toast({
+    //     title: "Hizbul Bahr",
+    //     description: "The Litany of the Sea - Special spiritual protection",
+    //   });
+    // } else {
+    //   toast({
+    //     title: "Munājāat Companion",
+    //     description: "A Weekly Journey of Divine Invocations",
+    //   });
+    // }
+  }, [appStateHook]);
 
   const handleViewModeToggle = useCallback(() => {
     appStateHook.setViewMode(appStateHook.viewMode === 'still' ? 'slide' : 'still');
@@ -93,39 +93,39 @@ export const useIndexPageLogic = () => {
     const newVisibility = !appStateHook.dayButtonsVisible;
     console.log('handleDayButtonsToggle called, changing from', appStateHook.dayButtonsVisible, 'to', newVisibility);
     appStateHook.setDayButtonsVisible(newVisibility);
-    toast({
-      title: newVisibility ? "Day Navigation Shown" : "Day Navigation Hidden",
-      description: newVisibility ? "Day buttons are now visible" : "Day buttons are now hidden",
-    });
-  }, [appStateHook, toast]);
+    // toast({
+    //   title: newVisibility ? "Day Navigation Shown" : "Day Navigation Hidden",
+    //   description: newVisibility ? "Day buttons are now visible" : "Day buttons are now hidden",
+    // });
+  }, [appStateHook]);
 
   const handleArabicFontChange = useCallback((font: string) => {
     console.log('handleArabicFontChange called with:', font);
     appStateHook.setArabicFont(font);
-    toast({
-      title: "Arabic Font Changed",
-      description: `Switched to ${font}`,
-    });
-  }, [appStateHook, toast]);
+    // toast({
+    //   title: "Arabic Font Changed",
+    //   description: `Switched to ${font}`,
+    // });
+  }, [appStateHook]);
 
   const handleEnglishFontChange = useCallback((font: string) => {
     console.log('handleEnglishFontChange called with:', font);
     appStateHook.setEnglishFont(font);
-    toast({
-      title: "English Font Changed", 
-      description: `Switched to ${font}`,
-    });
-  }, [appStateHook, toast]);
+    // toast({
+    //   title: "English Font Changed", 
+    //   description: `Switched to ${font}`,
+    // });
+  }, [appStateHook]);
 
   const handleAudioModeToggle = useCallback(() => {
     const newMode = appStateHook.audioMode === 'block' ? 'all' : 'block';
     console.log('handleAudioModeToggle called, changing from', appStateHook.audioMode, 'to', newMode);
     appStateHook.setAudioMode(newMode);
-    toast({
-      title: `Audio Mode: ${newMode === 'all' ? 'Play All' : 'Single Block'}`,
-      description: newMode === 'all' ? 'Will play all blocks continuously' : 'Will play current block only',
-    });
-  }, [appStateHook, toast]);
+    // toast({
+    //   title: `Audio Mode: ${newMode === 'all' ? 'Play All' : 'Single Block'}`,
+    //   description: newMode === 'all' ? 'Will play all blocks continuously' : 'Will play current block only',
+    // });
+  }, [appStateHook]);
 
   // Memoize handlers object to prevent unnecessary re-renders
   const handlers = useMemo(() => ({

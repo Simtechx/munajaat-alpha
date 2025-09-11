@@ -10,7 +10,7 @@ import { OfflineIndicator } from '@/components/OfflineIndicator';
 import { AudioControlsManager } from '@/components/audio/AudioControlsManager';
 import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
 import { ContentWrapper } from '@/components/layout/ContentWrapper';
-import { Toaster } from '@/components/ui/toaster';
+
 import { DayOfWeek, LayoutMode } from '@/types';
 import { DayIndicatorStyle } from '@/hooks/useAppState';
 
@@ -165,7 +165,7 @@ const IndexPageLayoutComponent: React.FC<IndexPageLayoutProps> = ({
           selectedDay={appState.selectedDay}
         />
         
-        <Toaster />
+        
       </div>
     </div>
   );
