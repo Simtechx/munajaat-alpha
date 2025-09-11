@@ -1,9 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "next-themes";
 
 // Lazy load components for better performance
 const TestComponent = lazy(() => import("./TestComponent"));
@@ -49,21 +48,21 @@ const App = () => {
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
-            <Routes>
-              <Route path="/test" element={<TestComponent />} />
-              <Route path="/" element={<HomePage />} />
-              <Route path="/munajaat" element={<Index />} />
-              <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-          <Toaster />
-          <Sonner />
-        </QueryClientProvider>
-      </BrowserRouter>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
+              <Routes>
+                <Route path="/test" element={<TestComponent />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/munajaat" element={<Index />} />
+                <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </QueryClientProvider>
+        </BrowserRouter>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 };
