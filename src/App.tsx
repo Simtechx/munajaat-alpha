@@ -1,6 +1,30 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import SimpleTest from "./SimpleTest";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Lazy load components for better performance
+const TestComponent = lazy(() => import("./TestComponent"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const Index = lazy(() => import("./pages/Index"));
+const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Create QueryClient instance  
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes
+      retry: (failureCount, error) => {
+        if (!navigator.onLine) return false;
+        return failureCount < 3;
+      },
+    },
+  },
+});
 
 console.log('App.tsx loading - React version:', React.version);
 
@@ -25,7 +49,21 @@ const App = () => {
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <SimpleTest />
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
+            <Routes>
+              <Route path="/test" element={<TestComponent />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/munajaat" element={<Index />} />
+              <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <Toaster />
+          <Sonner />
+        </QueryClientProvider>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 };
