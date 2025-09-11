@@ -1,15 +1,19 @@
+
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "next-themes";
 
 // Lazy load components for better performance
-const SimpleTest = lazy(() => import("./SimpleTest"));
 const TestComponent = lazy(() => import("./TestComponent"));
 const HomePage = lazy(() => import("./pages/HomePage"));
-const MunajaatPage = lazy(() => import("./pages/MunajaatPage"));
+const Index = lazy(() => import("./pages/Index"));
 const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+console.log('App.tsx loading - React version:', React.version);
 
 // Create QueryClient instance  
 const queryClient = new QueryClient({
@@ -24,8 +28,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-console.log('App.tsx loading - React version:', React.version);
 
 // Error boundary component
 const ErrorFallback = ({ error }: { error: Error }) => (
@@ -48,22 +50,21 @@ const App = () => {
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <BrowserRouter>
-          <QueryClientProvider client={queryClient}>
-            <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
-              <Routes>
-                <Route path="/test" element={<TestComponent />} />
-                <Route path="/" element={<HomePage />} />
-                <Route path="/munajaat" element={<MunajaatPage />} />
-                <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
-                <Route path="/simple" element={<SimpleTest />} />
-                <Route path="*" element={<HomePage />} />
-              </Routes>
-            </Suspense>
-          </QueryClientProvider>
-        </BrowserRouter>
-      </ThemeProvider>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
+            <Routes>
+              <Route path="/test" element={<TestComponent />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/munajaat" element={<Index />} />
+              <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <Toaster />
+          <Sonner />
+        </QueryClientProvider>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 };
