@@ -68,28 +68,47 @@ export const AppHeader: React.FC<AppHeaderProps> = memo(({
             </Link>
           </div>
 
-          {/* Center - Switch */}
+          {/* Center - Responsive Toggle (Mobile stacked, Tablet/Web linear) */}
           <div className="flex-1 flex justify-center">
-            <div className="inline-flex bg-muted rounded-lg p-1 shadow-sm border border-border/30">
+            <div
+              className="inline-flex md:flex-row flex-col bg-muted/70 rounded-full p-1 md:p-1.5 shadow-sm border border-border/30 w-full md:w-auto max-w-[320px] md:max-w-none"
+            >
+              {/* Munajat Option */}
               <button
-                onClick={() => onHizbulBahrToggle()}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                  !showHizbulBahr
-                    ? 'bg-background text-foreground shadow-sm border border-border/20'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
+                onClick={() => { if (showHizbulBahr) onHizbulBahrToggle(); }}
+                className={`group relative rounded-full transition-all duration-200 flex items-center gap-2 md:gap-3 text-left
+                  ${!showHizbulBahr
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow md:px-5 px-4 md:py-2.5 py-3'
+                    : 'bg-transparent text-muted-foreground md:px-5 px-4 md:py-2.5 py-3 hover:text-foreground'}`}
+                style={{ minWidth: 'auto' }}
               >
-                Munājāt-e-Maqbūl
+                <span className={`w-7 h-7 md:w-8 md:h-8 rounded-md flex items-center justify-center font-bold tracking-tight 
+                  ${!showHizbulBahr ? 'bg-white text-amber-700' : 'bg-white/80 text-slate-600'}`}>
+                  م
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="text-[13px] md:text-sm font-semibold">Munajat e Maqbool</span>
+                  <span className={`text-[11px] md:text-xs italic ${!showHizbulBahr ? 'text-white/90' : 'text-muted-foreground/80'}`}>مُناجاتِ مَقبول</span>
+                </span>
               </button>
+
+              {/* Hizbul Bahr Option */}
               <button
-                onClick={() => onHizbulBahrToggle()}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                  showHizbulBahr
-                    ? 'bg-background text-foreground shadow-sm border border-border/20'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
+                onClick={() => { if (!showHizbulBahr) onHizbulBahrToggle(); }}
+                className={`group relative rounded-full transition-all duration-200 flex items-center gap-2 md:gap-3 text-left md:ml-1
+                  ${showHizbulBahr
+                    ? 'bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow md:px-5 px-4 md:py-2.5 py-3'
+                    : 'bg-transparent text-muted-foreground md:px-5 px-4 md:py-2.5 py-3 hover:text-foreground'}`}
+                style={{ minWidth: 'auto' }}
               >
-                Hizbul Bahar
+                <span className={`w-7 h-7 md:w-8 md:h-8 rounded-md flex items-center justify-center font-bold tracking-tight 
+                  ${showHizbulBahr ? 'bg-white text-indigo-700' : 'bg-white/80 text-slate-600'}`}>
+                  ح
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="text-[13px] md:text-sm font-semibold">Hizbul Bahr</span>
+                  <span className={`text-[11px] md:text-xs italic ${showHizbulBahr ? 'text-white/90' : 'text-muted-foreground/80'}`}>حزب البحر</span>
+                </span>
               </button>
             </div>
           </div>

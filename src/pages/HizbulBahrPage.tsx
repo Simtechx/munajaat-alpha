@@ -1,21 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Home } from 'lucide-react';
-import HizbulBahrPageNew from './HizbulBahrPageNew';
+import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
+import { HizbulBahr } from '@/components/HizbulBahr';
+import { DayOfWeek } from '@/types';
+import { AppHeader } from '@/components/AppHeader';
 
 const HizbulBahrPage: React.FC = () => {
+  const selectedDay: DayOfWeek = 'Sunday';
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen">
-      <div className="fixed top-4 left-4 z-50">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 bg-background/90 hover:bg-accent text-foreground px-4 py-2 rounded-lg shadow-lg border border-border transition-all backdrop-blur-sm"
-        >
-          <Home className="w-4 h-4" />
-          <span className="text-sm font-medium">Home</span>
-        </Link>
+    <div className="min-h-screen relative">
+      <BackgroundLayers 
+        selectedDay={selectedDay}
+        selectedTheme="color"
+        backgroundOpacity={3}
+      />
+
+      {/* App Header */}
+      <div className="relative z-30">
+        <AppHeader
+          selectedDay={selectedDay}
+          showHizbulBahr={true}
+          onShowInfo={() => {}}
+          onShowPublisher={() => {}}
+          onHizbulBahrToggle={() => navigate('/munajaat')}
+        />
       </div>
-      <HizbulBahrPageNew />
+
+      <div className="relative z-10 py-8">
+        <HizbulBahr 
+          selectedDay={selectedDay}
+          arabicVisible={true}
+          englishVisible={true}
+        />
+      </div>
     </div>
   );
 };

@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     force: true,
-    include: ['react', 'react-dom', '@radix-ui/react-tooltip']
+    include: ['react', 'react-dom', '@radix-ui/react-tooltip', '@tanstack/react-query']
   },
   build: {
     target: 'esnext',
@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: mode === 'production',
         drop_debugger: true,
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug', 'console.warn', 'console.error'] : []
       },
     },
     rollupOptions: {
@@ -40,7 +41,7 @@ export default defineConfig(({ mode }) => ({
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
           router: ['react-router-dom'],
           query: ['@tanstack/react-query'],
-          utils: ['date-fns', 'clsx', 'tailwind-merge']
+          utils: ['clsx', 'tailwind-merge']
         },
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',

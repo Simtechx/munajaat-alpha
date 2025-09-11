@@ -5,13 +5,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Lazy load components for better performance
-const TestComponent = lazy(() => import("./TestComponent"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const Index = lazy(() => import("./pages/Index"));
 const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-console.log('App.tsx loading - React version:', React.version);
+// Avoid dev logs in production; vite strips these in prod build
+if (import.meta.env.DEV) {
+  console.log('App.tsx loading - React version:', React.version);
+}
 
 // Error boundary component
 const ErrorFallback = ({ error }: { error: Error }) => (
@@ -44,7 +46,9 @@ const queryClient = new QueryClient({
 });
 
 const App: React.FC = () => {
-  console.log('App component rendering successfully, React version:', React.version);
+  if (import.meta.env.DEV) {
+    console.log('App render OK - React:', React.version);
+  }
   
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -55,7 +59,6 @@ const App: React.FC = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/munajaat" element={<Index />} />
               <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
-              <Route path="/test" element={<TestComponent />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

@@ -127,22 +127,37 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-munajaat-primary">7</div>
-              <div className="text-sm text-muted-foreground">Days of Munājāt</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {/* Stat 1 */}
+            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-6 text-foreground shadow-xl">
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="text-3xl md:text-4xl font-bold text-munajaat-primary">7</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Days of Munājāt</div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-hizbul-primary">∞</div>
-              <div className="text-sm text-muted-foreground">Divine Protection</div>
+
+            {/* Stat 2 */}
+            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-6 text-foreground shadow-xl">
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="text-3xl md:text-4xl font-bold text-hizbul-primary">∞</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Divine Protection</div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-munajaat-secondary">2</div>
-              <div className="text-sm text-muted-foreground">Sacred Collections</div>
+
+            {/* Stat 3 */}
+            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-6 text-foreground shadow-xl">
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="text-3xl md:text-4xl font-bold text-munajaat-secondary">2</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Sacred Collections</div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-hizbul-secondary">✦</div>
-              <div className="text-sm text-muted-foreground">Spiritual Elevation</div>
+
+            {/* Stat 4 */}
+            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-6 text-foreground shadow-xl">
+              <div className="flex flex-col items-center text-center gap-1">
+                <div className="text-3xl md:text-4xl font-bold text-hizbul-secondary">✦</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Spiritual Elevation</div>
+              </div>
             </div>
           </div>
         </div>
