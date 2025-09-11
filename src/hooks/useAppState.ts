@@ -10,8 +10,14 @@ export type DayIndicatorStyle =
   | 'floating-badge'
   | 'inverted';
 
+console.log('useState function:', useState);
+
 export const useAppState = () => {
+  console.log('useAppState hook called');
+  
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>(getCurrentDay());
+  console.log('useState worked for selectedDay');
+  
   const [selectedLayout, setSelectedLayout] = useState<LayoutMode>('Classic');
   const [completedDays, setCompletedDays] = useState<Set<DayOfWeek>>(new Set());
   const [showHizbulBahr, setShowHizbulBahr] = useState(false);

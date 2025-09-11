@@ -1,8 +1,6 @@
 
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -12,6 +10,22 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const Index = lazy(() => import("./pages/Index"));
 const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+console.log('App.tsx loading - React version:', React.version);
+
+// Create QueryClient instance  
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes
+      retry: (failureCount, error) => {
+        if (!navigator.onLine) return false;
+        return failureCount < 3;
+      },
+    },
+  },
+});
 
 // Error boundary component
 const ErrorFallback = ({ error }: { error: Error }) => (
@@ -29,21 +43,9 @@ const ErrorFallback = ({ error }: { error: Error }) => (
   </div>
 );
 
-// Create QueryClient instance outside component
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 30, // 30 minutes
-      retry: (failureCount, error) => {
-        if (!navigator.onLine) return false;
-        return failureCount < 3;
-      },
-    },
-  },
-});
-
-function App() {
+const App = () => {
+  console.log('App component rendering successfully, React version:', React.version);
+  
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <BrowserRouter>
@@ -57,12 +59,10 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-          <Toaster />
-          <Sonner />
         </QueryClientProvider>
       </BrowserRouter>
     </ErrorBoundary>
   );
-}
+};
 
 export default App;
