@@ -52,10 +52,10 @@ const App: React.FC = () => {
         <QueryClientProvider client={queryClient}>
           <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
             <Routes>
-              <Route path="/test" element={<TestComponent />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/munajaat" element={<Index />} />
               <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
+              <Route path="/test" element={<TestComponent />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

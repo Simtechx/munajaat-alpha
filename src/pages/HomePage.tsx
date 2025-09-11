@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BackgroundLayers } from '@/components/layout/BackgroundLayers';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen relative">
-      {/* Use same background as Munajaat page */}
+      {/* Background with Sunday theme as default */}
       <BackgroundLayers 
         selectedDay="Sunday"
         selectedTheme="color"
@@ -25,13 +25,13 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Main Toggle Switch like original design */}
+          {/* Main Navigation Cards */}
           <div className="flex justify-center mb-16">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-2 border border-white/20">
-              <div className="flex">
-                {/* Munājāt Toggle */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-2 border border-white/20 shadow-xl">
+              <div className="flex flex-col sm:flex-row gap-2">
+                {/* Munājāt Navigation */}
                 <Link to="/munajaat" className="group">
-                  <div className="relative px-8 py-4 rounded-xl bg-gradient-to-r from-munajaat-primary to-munajaat-secondary text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                  <div className="relative px-8 py-6 rounded-xl bg-gradient-to-r from-munajaat-primary to-munajaat-secondary text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div className="text-center">
                       <div className="text-2xl font-scheherazade mb-1">مُناجاتِ مقبول</div>
                       <div className="text-sm opacity-90">Munājāt e Maqbool</div>
@@ -39,9 +39,9 @@ const HomePage = () => {
                   </div>
                 </Link>
                 
-                {/* Hizbul Bahr Toggle */}
+                {/* Hizbul Bahr Navigation */}
                 <Link to="/hizbul-bahr" className="group">
-                  <div className="relative px-8 py-4 rounded-xl bg-gradient-to-r from-hizbul-primary to-hizbul-secondary text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg ml-2">
+                  <div className="relative px-8 py-6 rounded-xl bg-gradient-to-r from-hizbul-primary to-hizbul-secondary text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     <div className="text-center">
                       <div className="text-2xl font-scheherazade mb-1">حِزْبُ البَحْر</div>
                       <div className="text-sm opacity-90">Hizbul Bahr</div>
@@ -56,7 +56,7 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             
             {/* Munājāt Card */}
-            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 text-foreground">
+            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 text-foreground shadow-xl">
               <div className="space-y-4">
                 <div>
                   <h2 className="text-3xl font-bold mb-2">Munājāt e Maqbool</h2>
@@ -91,7 +91,7 @@ const HomePage = () => {
             </div>
 
             {/* Hizbul Bahr Card */}
-            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 text-foreground">
+            <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 text-foreground shadow-xl">
               <div className="space-y-4">
                 <div>
                   <h2 className="text-3xl font-bold mb-2">Hizbul Bahr</h2>
