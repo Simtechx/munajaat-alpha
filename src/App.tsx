@@ -8,6 +8,8 @@ import { ThemeProvider } from "next-themes";
 const SimpleTest = lazy(() => import("./SimpleTest"));
 const TestComponent = lazy(() => import("./TestComponent"));
 const HomePage = lazy(() => import("./pages/HomePage"));
+const MunajaatPage = lazy(() => import("./pages/MunajaatPage"));
+const HizbulBahrPage = lazy(() => import("./pages/HizbulBahrPage"));
 
 // Create QueryClient instance  
 const queryClient = new QueryClient({
@@ -53,8 +55,10 @@ const App = () => {
               <Routes>
                 <Route path="/test" element={<TestComponent />} />
                 <Route path="/" element={<HomePage />} />
+                <Route path="/munajaat" element={<MunajaatPage />} />
+                <Route path="/hizbul-bahr" element={<HizbulBahrPage />} />
                 <Route path="/simple" element={<SimpleTest />} />
-                <Route path="*" element={<SimpleTest />} />
+                <Route path="*" element={<HomePage />} />
               </Routes>
             </Suspense>
           </QueryClientProvider>

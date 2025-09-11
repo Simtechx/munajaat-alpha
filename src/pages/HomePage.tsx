@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -11,12 +12,12 @@ const HomePage = () => {
           Choose your spiritual journey
         </p>
         <div className="space-y-4">
-          <button className="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <Link to="/munajaat" className="block w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center">
             Munājāt e Maqbool
-          </button>
-          <button className="w-full py-3 px-6 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+          </Link>
+          <Link to="/hizbul-bahr" className="block w-full py-3 px-6 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center">
             Hizbul Bahr
-          </button>
+          </Link>
         </div>
       </div>
     </div>
